@@ -280,7 +280,7 @@ const afoeeActions = [
     group: "support",
     tag: "PMAS",
     desc: "ใช้ DCS/PI database และ Neural Network เทียบค่าจริงกับค่าคาดการณ์ เพื่อแจ้ง deviation ก่อน DCS alarm",
-    detail: "กรณี NB-C1 ตรวจพบ Compressor Efficiency ลดลงจาก Cooling Water รั่ว ช่วยหลีกเลี่ยงความเสียหายและบทปรับได้",
+    detail: "กรณีตัวอย่างตรวจพบ Compressor Efficiency ลดลงจากระบบหล่อเย็นรั่ว ช่วยหลีกเลี่ยงความเสียหายและผลกระทบทางการเงินได้",
     source: "Slide หน้า 33-39"
   },
   {
@@ -296,7 +296,7 @@ const afoeeActions = [
     group: "planned",
     tag: "Bushing",
     desc: "ระยะสั้นใช้ Thermoscan, Electrical Test ช่วง PO, ทดสอบ PD ของ spare และพิจารณา Online Monitoring",
-    detail: "ระยะยาวเปลี่ยน OIP เป็น RIP/RIS เพื่อลดความเสี่ยงไฟไหม้และจำกัดขอบเขตความเสียหาย",
+    detail: "ระยะยาวเปลี่ยน OIP เป็น RIP/RIS เพื่อลดความเสี่ยงความเสียหายรุนแรงและจำกัดขอบเขตผลกระทบ",
     source: "Slide หน้า 55-63"
   },
   {
@@ -319,7 +319,7 @@ const afoeeActions = [
     title: "Compressor Blade Damage",
     group: "unplanned",
     tag: "Compressor",
-    desc: "กรณี WN-C41 Trip จาก Compressor Surge Protection พบความเสียหาย Compressor Blade/Vane Stage 7-15",
+    desc: "กรณีตัวอย่าง Trip จาก Compressor Surge Protection และพบความเสียหายของ Compressor Blade/Vane หลาย stage",
     detail: "ปัจจัยสำคัญคือ spare parts, de-stacking tools, manpower และ daily meeting กับ OEM/หน่วยงานเกี่ยวข้อง",
     source: "Slide หน้า 99-108"
   },

@@ -2,6 +2,8 @@
 
 Interactive static web app for learning GADS, AFoEE, event codes, case studies, and performance index calculations.
 
+This public version keeps the learning workflow, calculators, and glossary UX while avoiding plant-specific or confidential case identifiers.
+
 ## Run Locally
 
 Open the static app through the launcher:
@@ -30,4 +32,4 @@ Current workflow is manual-only (`workflow_dispatch`) so private repositories on
 
 ## Notes
 
-The current content was built from internal workshop/training material. Review visibility before deploying publicly.
+Use only public-safe content in this repository. Keep confidential source documents and plant-specific operational records out of the repo.
