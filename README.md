@@ -24,7 +24,9 @@ GADS-Insight-Lab-Standalone.html
 
 ## Deploy
 
-This repo is ready for GitHub Pages. Push to GitHub, enable Pages with GitHub Actions, and the workflow in `.github/workflows/pages.yml` will publish the site.
+This repo is ready for GitHub Pages when the GitHub account or organization supports Pages for private repositories.
+
+Current workflow is manual-only (`workflow_dispatch`) so private repositories on unsupported plans do not fail on every push. After Pages is enabled and configured to build with GitHub Actions, run the workflow in `.github/workflows/pages.yml`.
 
 ## Notes
 
