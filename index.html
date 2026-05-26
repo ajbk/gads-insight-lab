@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GADS 2025 Insight Lab</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">GADS 2025 : Insight & Index</p>
+        <h1>GADS Insight Lab</h1>
+      </div>
+      <div class="source-pill">อ้างอิง PDF วันที่ 29 Oct 2025</div>
+    </header>
+
+    <main class="app-shell">
+      <aside class="sidebar" aria-label="เมนูหลัก">
+        <button class="nav-button is-active" data-view="overview">ภาพรวมระบบ</button>
+        <button class="nav-button" data-view="events">Event Code</button>
+        <button class="nav-button" data-view="wizard">เลือกประเภทเหตุการณ์</button>
+        <button class="nav-button" data-view="calculators">คำนวณ Index</button>
+        <button class="nav-button" data-view="afoee">AFoEE</button>
+        <button class="nav-button" data-view="cases">Case Study</button>
+        <button class="nav-button" data-view="glossary">Glossary</button>
+      </aside>
+
+      <section class="workspace">
+        <section class="view is-visible" id="overview">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Section 1</p>
+              <h2>เข้าใจระบบ GADS จากข้อมูลที่ต้องรายงาน</h2>
+            </div>
+            <p>ระบบฐานข้อมูลกลางสำหรับข้อมูลการผลิต เชื้อเพลิง และเหตุการณ์ที่กระทบกำลังผลิตของโรงไฟฟ้า กฟผ.</p>
+          </div>
+
+          <div class="flow-grid">
+            <article class="flow-node">
+              <span>1</span>
+              <h3>Input Data</h3>
+              <p>Generation, Event และ Fuel Data รายงานผ่าน Web Based Application หรือเชื่อมฐานข้อมูลโรงไฟฟ้า</p>
+            </article>
+            <article class="flow-node">
+              <span>2</span>
+              <h3>GADS SQL Database</h3>
+              <p>รวบรวมข้อมูลรายเดือน ตรวจสอบความถูกต้อง และจัดเก็บตามนิยาม IEEE 762 / NERC GADS</p>
+            </article>
+            <article class="flow-node">
+              <span>3</span>
+              <h3>Reports & Dashboard</h3>
+              <p>ใช้ทำ GADS Report 1-8, รายงานผลสายงาน รวฟ., Dashboard และสนับสนุนหน่วยงานอื่น</p>
+            </article>
+          </div>
+
+          <div class="metric-strip">
+            <div><strong>8</strong><span>ประเภทโรงไฟฟ้า</span></div>
+            <div><strong>45</strong><span>โรงไฟฟ้า</span></div>
+            <div><strong>147</strong><span>Units</span></div>
+            <div><strong>วันที่ 5</strong><span>กำหนดนำเข้าข้อมูลทุกเดือน</span></div>
+          </div>
+
+          <div class="two-column">
+            <section class="panel">
+              <h3>สิ่งที่ต้องระวังตอนกรอกข้อมูล</h3>
+              <ul class="check-list">
+                <li>ระบุชื่ออุปกรณ์หรือสัญญาณเป็นชื่อเต็ม</li>
+                <li>ค่า GAG และ NAG ขอให้กรอกทศนิยม 6 ตำแหน่ง</li>
+                <li>NAG ติดลบได้ หาก Station Service มากกว่า Gross Actual Generation</li>
+                <li>Hydro พิจารณา Code A เฉพาะเหตุการณ์ที่กระทบ Generator Mode</li>
+              </ul>
+            </section>
+            <section class="panel accent">
+              <h3>สมการเวลาแกนหลัก</h3>
+              <div class="formula-stack">
+                <code>PH = AH + UH</code>
+                <code>PH = SH + RH + UH</code>
+                <code>PH = SH + RH + POH + UOH</code>
+                <code>PH = SH + RH + POH + MOH + FOH</code>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="events">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Section 2</p>
+              <h2>Event Code ที่ส่งผลต่อ Performance Index</h2>
+            </div>
+            <input class="search-input" id="eventSearch" type="search" placeholder="ค้นหา เช่น PO, U1, Derating" />
+          </div>
+          <div class="legend-row">
+            <span class="legend planned">Planned</span>
+            <span class="legend unplanned">Unplanned</span>
+            <span class="legend derating">Derating</span>
+            <span class="legend support">Support</span>
+          </div>
+          <div class="event-grid" id="eventGrid"></div>
+        </section>
+
+        <section class="view" id="wizard">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Decision Helper</p>
+              <h2>ช่วยเลือก Event Type จากเงื่อนไขจริง</h2>
+            </div>
+            <p>ตอบคำถามสั้น ๆ เพื่อดูคำแนะนำเบื้องต้น พร้อมเหตุผลอ้างอิงจากนิยามในไฟล์</p>
+          </div>
+          <div class="wizard-layout">
+            <form class="panel" id="eventWizard">
+              <label>
+                ลักษณะเหตุการณ์
+                <select name="kind">
+                  <option value="outage">หยุดเครื่อง / ไม่พร้อมเดินเครื่อง</option>
+                  <option value="derating">ลดกำลังผลิต แต่ยังเดินเครื่องได้</option>
+                  <option value="reserved">พร้อมเดินเครื่อง แต่ไม่ได้ถูกสั่งเดินเครื่อง</option>
+                  <option value="secondary">งานเพิ่มเติมระหว่างเหตุการณ์หลัก</option>
+                </select>
+              </label>
+              <label>
+                มีแผนล่วงหน้าชัดเจนหรือไม่
+                <select name="planning">
+                  <option value="planned">มีแผน Planned Outage</option>
+                  <option value="gt7">วางแผนหยุดได้ล่วงหน้าเกิน 7 วัน</option>
+                  <option value="lt6">ต้องดำเนินการทันทีหรือภายใน 6 ชั่วโมง</option>
+                  <option value="lt7">เลื่อนได้เกิน 6 ชั่วโมง แต่ไม่เกิน 7 วัน</option>
+                  <option value="after7">เลื่อนได้เกิน 7 วัน ก่อน PO ครั้งหน้า</option>
+                  <option value="none">ไม่เกี่ยวกับแผน</option>
+                </select>
+              </label>
+              <label>
+                สถานะระหว่าง Startup
+                <select name="startup">
+                  <option value="none">ไม่ใช่ Startup</option>
+                  <option value="failBeforeSync">Startup แล้วขนานเครื่องไม่สำเร็จ</option>
+                  <option value="failAfterSync">ขนานแล้ว แต่ขึ้น Load ตามสั่งไม่ได้</option>
+                  <option value="testInScope">Trip/Shutdown ระหว่าง Startup Test ใน scope งาน PO</option>
+                </select>
+              </label>
+              <label>
+                การลดกำลังผลิตเข้าเกณฑ์ Derating หรือไม่
+                <select name="deratingRule">
+                  <option value="yes">ลด Load มากกว่า 2% ของ GMC หรือยาวเกิน 30 นาที</option>
+                  <option value="no">ไม่เข้าเกณฑ์</option>
+                  <option value="ambient">เกิดจาก Ambient / Seasonal Loss</option>
+                </select>
+              </label>
+            </form>
+            <section class="decision-panel" id="wizardResult"></section>
+          </div>
+        </section>
+
+        <section class="view" id="calculators">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Section 3</p>
+              <h2>เครื่องคิดเลข Performance Index</h2>
+            </div>
+            <p>ใส่ค่าตัวอย่างแล้วดูผลทันที เหมาะสำหรับทวน logic ก่อนรายงานข้อมูลจริง</p>
+          </div>
+          <div class="calc-tabs" role="tablist" aria-label="เลือกเครื่องคิดเลข">
+            <button class="tab-button is-active" data-calc="time">Time Factors</button>
+            <button class="tab-button" data-calc="gweaf">GWEAF / EAF</button>
+            <button class="tab-button" data-calc="nof">NOF</button>
+            <button class="tab-button" data-calc="station">Station Service</button>
+          </div>
+          <div class="calculator-panel" id="calculatorPanel"></div>
+        </section>
+
+        <section class="view" id="cases">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Case Study</p>
+              <h2>จำลองเหตุการณ์จากสไลด์</h2>
+            </div>
+            <p>เลือกเคสเพื่อดู timeline, Event Type และข้อสรุปชั่วโมงของแต่ละ Unit</p>
+          </div>
+          <div class="case-list" id="caseList"></div>
+          <section class="case-detail" id="caseDetail"></section>
+        </section>
+
+        <section class="view" id="afoee">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">AFoEE Workshop 2024</p>
+              <h2>Availability Factor OEE</h2>
+            </div>
+            <p>ตัวชี้วัดความพร้อมจ่ายที่ยกเว้นช่วง Planned Outage ตามเป้าหมาย และไม่หักผลกระทบจาก Derating</p>
+          </div>
+
+          <div class="afoee-hero">
+            <section class="panel accent">
+              <h3>นิยามแกนหลัก</h3>
+              <p>AFoEE คืออัตราส่วนของชั่วโมงที่โรงไฟฟ้าพร้อมจ่ายไฟฟ้า ต่อชั่วโมงที่ประเมินผล หลังยกเว้น Planned Outage ที่ไม่เกินเป้าหมาย</p>
+              <div class="formula-stack">
+                <code>AH = PH - POHOEE - PEHOEE - UOH</code>
+                <code>AFoEE = AH / (PH - POHOEE) x 100</code>
+              </div>
+            </section>
+            <section class="panel">
+              <h3>ขอบเขตที่นำมาประเมิน</h3>
+              <ul class="check-list">
+                <li>โรงไฟฟ้าที่อยู่ใน Contracted Capacity ตาม PDP หลัง COD</li>
+                <li>ไม่อยู่ภายใต้ Warranty และไม่ใช่ช่วง 2 ปีก่อนปลดเครื่องตาม PDP/มติ กพช.</li>
+                <li>ปี 2567 ใช้โรงไฟฟ้าที่มี Dispatch Factor มากกว่า 0.1</li>
+                <li>คำนวณภาพรวมด้วย GMC Weighted Average ก่อนเข้าสูตร AFoEE</li>
+              </ul>
+            </section>
+          </div>
+
+          <div class="afoee-compare" id="afoeeCompare"></div>
+
+          <div class="two-column">
+            <section class="calculator-panel">
+              <div class="code-title">
+                <h3>AFoEE Calculator</h3>
+                <span class="badge planned">Time Based</span>
+              </div>
+              <form class="calc-grid afoee-form" id="afoeeCalc"></form>
+              <div class="result-grid" id="afoeeResults"></div>
+              <p class="note">ถ้าคิดภาพรวมหลาย Unit ให้ทำ GMC Weighted Average ของ PH, AH และ POHOEE ก่อน แล้วจึงนำผลรวมเข้าสูตร</p>
+            </section>
+
+            <section class="calculator-panel">
+              <div class="code-title">
+                <h3>เป้าหมาย AFOEE 2567</h3>
+                <span class="badge support">PA</span>
+              </div>
+              <table class="totals">
+                <thead><tr><th>ระดับ</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+                <tbody><tr><td>AFOEE</td><td>91.19%</td><td>92.02%</td><td>92.85%</td><td>93.68%</td><td>94.51%</td></tr></tbody>
+              </table>
+              <p>ระดับ 3 ใช้ค่าเฉลี่ยย้อนหลังของ IPP, ระดับ 5 ใช้ค่าที่ดีที่สุด และ interval = (Level 5 - Level 3) / 2</p>
+              <div class="formula-stack">
+                <code>Unplanned target = 100 - 94.51 = 5.49%</code>
+                <code>แจกแจงตามสัดส่วน (PH - POHOEE) x GMC รายโรงไฟฟ้า/เดือน</code>
+              </div>
+            </section>
+          </div>
+
+          <div class="afoee-rules" id="afoeeRules"></div>
+
+          <div class="section-head subhead">
+            <div>
+              <p class="eyebrow">Improvement Playbook</p>
+              <h2>แนวทางลด PE / UO จาก PMAS และ Workshop</h2>
+            </div>
+            <input class="search-input" id="afoeeSearch" type="search" placeholder="ค้นหา เช่น PMAS, Bushing, Boiler" />
+          </div>
+          <div class="event-grid" id="afoeeActions"></div>
+        </section>
+
+        <section class="view" id="glossary">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Glossary</p>
+              <h2>ค้นหาคำย่อและสูตรสำคัญ</h2>
+            </div>
+            <input class="search-input" id="glossarySearch" type="search" placeholder="ค้นหา เช่น SH, EUNDH, NOF" />
+          </div>
+          <div class="glossary-grid" id="glossaryGrid"></div>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

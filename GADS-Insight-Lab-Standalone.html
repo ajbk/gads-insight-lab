@@ -1,0 +1,1779 @@
+﻿<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GADS 2025 Insight Lab</title>
+    <style>
+:root {
+  --ink: #18202b;
+  --muted: #667085;
+  --line: #d8dee8;
+  --paper: #f7f9fc;
+  --white: #ffffff;
+  --teal: #0f766e;
+  --teal-soft: #dff5f2;
+  --coral: #b54708;
+  --coral-soft: #fff1e7;
+  --indigo: #3538cd;
+  --indigo-soft: #eceefe;
+  --green: #287a3e;
+  --red: #b42318;
+  --shadow: 0 18px 45px rgba(24, 32, 43, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  letter-spacing: 0;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+.topbar {
+  min-height: 92px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 18px 28px;
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+}
+
+.topbar h1,
+.section-head h2 {
+  margin: 0;
+}
+
+.eyebrow {
+  margin: 0 0 5px;
+  color: var(--teal);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.source-pill,
+.legend {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 7px 12px;
+  color: var(--muted);
+  background: var(--white);
+  white-space: nowrap;
+}
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: calc(100vh - 92px);
+}
+
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: calc(100vh - 92px);
+  padding: 18px;
+  border-right: 1px solid var(--line);
+  background: #eef3f8;
+}
+
+.nav-button,
+.tab-button,
+.case-button {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+}
+
+.nav-button {
+  padding: 10px 12px;
+  margin-bottom: 7px;
+}
+
+.nav-button:hover,
+.nav-button.is-active {
+  background: var(--white);
+  border-color: var(--line);
+  box-shadow: 0 8px 20px rgba(24, 32, 43, 0.06);
+}
+
+.workspace {
+  padding: 24px;
+  max-width: 1340px;
+  width: 100%;
+}
+
+.view {
+  display: none;
+}
+
+.view.is-visible {
+  display: block;
+}
+
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+
+.section-head > p {
+  max-width: 560px;
+  margin: 0;
+  color: var(--muted);
+}
+
+.flow-grid,
+.event-grid,
+.glossary-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.flow-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.flow-node,
+.panel,
+.event-card,
+.glossary-card,
+.case-detail,
+.decision-panel,
+.calculator-panel {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.flow-node {
+  padding: 18px;
+  min-height: 165px;
+}
+
+.flow-node span {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  color: var(--white);
+  background: var(--teal);
+  font-weight: 800;
+}
+
+.flow-node h3,
+.panel h3,
+.event-card h3,
+.glossary-card h3,
+.case-detail h3 {
+  margin: 12px 0 8px;
+}
+
+.flow-node p,
+.event-card p,
+.glossary-card p,
+.case-detail p,
+.panel p {
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.metric-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.metric-strip div {
+  min-height: 86px;
+  padding: 14px;
+  background: var(--ink);
+  color: var(--white);
+  border-radius: 8px;
+}
+
+.metric-strip strong {
+  display: block;
+  font-size: 1.55rem;
+}
+
+.metric-strip span {
+  color: #c9d3e4;
+}
+
+.two-column,
+.wizard-layout,
+.afoee-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+}
+
+.panel,
+.decision-panel,
+.calculator-panel,
+.case-detail {
+  padding: 18px;
+}
+
+.panel.accent {
+  background: var(--teal-soft);
+  border-color: #a8ded7;
+}
+
+.check-list {
+  margin: 10px 0 0;
+  padding-left: 22px;
+  line-height: 1.8;
+}
+
+.formula-stack {
+  display: grid;
+  gap: 10px;
+}
+
+code {
+  display: block;
+  padding: 10px 12px;
+  color: var(--ink);
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  white-space: normal;
+}
+
+.glossary-term {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  border-bottom: 1px dotted var(--teal);
+  color: inherit;
+  cursor: help;
+}
+
+.glossary-term:focus {
+  outline: 2px solid #8fd7cf;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.glossary-term::after {
+  content: attr(data-glossary);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  z-index: 20;
+  width: min(320px, 78vw);
+  min-width: 220px;
+  padding: 10px 12px;
+  border: 1px solid #8fd7cf;
+  border-radius: 8px;
+  background: #10202b;
+  color: var(--white);
+  box-shadow: 0 14px 35px rgba(16, 32, 43, 0.22);
+  font-size: 0.86rem;
+  font-weight: 500;
+  line-height: 1.55;
+  white-space: normal;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 6px);
+  transition: opacity 120ms ease, transform 120ms ease;
+}
+
+.glossary-term::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 3px);
+  z-index: 21;
+  width: 12px;
+  height: 12px;
+  background: #10202b;
+  border-right: 1px solid #8fd7cf;
+  border-bottom: 1px solid #8fd7cf;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 6px) rotate(45deg);
+  transition: opacity 120ms ease, transform 120ms ease;
+}
+
+.glossary-term:hover::after,
+.glossary-term:hover::before,
+.glossary-term:focus::after,
+.glossary-term:focus::before {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.search-input {
+  width: min(380px, 100%);
+  min-height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 9px 12px;
+  background: var(--white);
+}
+
+.legend-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.legend.planned,
+.badge.planned {
+  background: var(--teal-soft);
+  color: var(--teal);
+  border-color: #a8ded7;
+}
+
+.legend.unplanned,
+.badge.unplanned {
+  background: var(--coral-soft);
+  color: var(--coral);
+  border-color: #ffd1b8;
+}
+
+.legend.derating,
+.badge.derating {
+  background: var(--indigo-soft);
+  color: var(--indigo);
+  border-color: #c8ceff;
+}
+
+.legend.support,
+.badge.support {
+  background: #eef4ff;
+  color: #175cd3;
+  border-color: #c7d7fe;
+}
+
+.event-grid,
+.glossary-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.event-card,
+.glossary-card {
+  padding: 16px;
+  min-height: 190px;
+}
+
+.afoee-compare,
+.afoee-rules {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin: 16px 0;
+}
+
+.compare-card {
+  min-height: 210px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+  box-shadow: var(--shadow);
+}
+
+.compare-card strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1.3rem;
+}
+
+.compare-card code {
+  margin-top: 12px;
+}
+
+.rule-card {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfcfe;
+}
+
+.rule-card h3 {
+  margin: 0 0 8px;
+}
+
+.subhead {
+  margin-top: 24px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.code-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.code-title strong {
+  font-size: 1.35rem;
+}
+
+.source {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+label {
+  display: grid;
+  gap: 7px;
+  margin-bottom: 14px;
+  font-weight: 700;
+}
+
+select,
+.number-input {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: var(--white);
+  color: var(--ink);
+}
+
+.decision-code {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--teal);
+}
+
+.decision-panel ul {
+  line-height: 1.75;
+  padding-left: 20px;
+}
+
+.calc-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+  overflow-x: auto;
+}
+
+.tab-button {
+  width: auto;
+  min-width: 150px;
+  padding: 8px 12px;
+  text-align: center;
+  border-color: var(--line);
+  background: var(--white);
+}
+
+.tab-button.is-active {
+  color: var(--white);
+  background: var(--ink);
+}
+
+.calc-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.result-box {
+  min-height: 86px;
+  padding: 12px;
+  background: #f3f6fb;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+.result-box strong {
+  display: block;
+  font-size: 1.35rem;
+}
+
+.case-list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.case-button {
+  min-height: 72px;
+  padding: 12px;
+  background: var(--white);
+  border-color: var(--line);
+}
+
+.case-button.is-active {
+  color: var(--white);
+  background: var(--teal);
+  border-color: var(--teal);
+}
+
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(15, minmax(34px, 1fr));
+  gap: 4px;
+  margin: 16px 0;
+}
+
+.day {
+  min-height: 54px;
+  display: grid;
+  place-items: center;
+  padding: 4px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: #f7f9fc;
+  font-size: 0.78rem;
+  text-align: center;
+}
+
+.day.po,
+.day.pd {
+  background: var(--teal-soft);
+}
+
+.day.uo,
+.day.sf {
+  background: var(--coral-soft);
+}
+
+.day.rs {
+  background: #eef4ff;
+}
+
+.day.d1,
+.day.d3 {
+  background: var(--indigo-soft);
+}
+
+.totals {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 12px;
+  overflow: hidden;
+}
+
+.totals th,
+.totals td {
+  padding: 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+
+.totals th {
+  background: #eef3f8;
+}
+
+.note {
+  padding: 12px;
+  border-left: 4px solid var(--coral);
+  background: var(--coral-soft);
+}
+
+@media (max-width: 980px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .nav-button {
+    margin: 0;
+    text-align: center;
+  }
+
+  .section-head,
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .flow-grid,
+  .event-grid,
+  .glossary-grid,
+  .two-column,
+  .wizard-layout,
+  .afoee-hero,
+  .afoee-compare,
+  .afoee-rules,
+  .metric-strip,
+  .case-list,
+  .calc-grid,
+  .result-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .topbar,
+  .workspace,
+  .sidebar {
+    padding: 14px;
+  }
+
+  .sidebar,
+  .flow-grid,
+  .event-grid,
+  .glossary-grid,
+  .two-column,
+  .wizard-layout,
+  .afoee-hero,
+  .afoee-compare,
+  .afoee-rules,
+  .metric-strip,
+  .case-list,
+  .calc-grid,
+  .result-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline {
+    grid-template-columns: repeat(5, minmax(40px, 1fr));
+  }
+}
+
+</style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">GADS 2025 : Insight & Index</p>
+        <h1>GADS Insight Lab</h1>
+      </div>
+      <div class="source-pill">เธญเนเธฒเธเธญเธดเธ PDF เธงเธฑเธเธ—เธตเน 29 Oct 2025</div>
+    </header>
+
+    <main class="app-shell">
+      <aside class="sidebar" aria-label="เน€เธกเธเธนเธซเธฅเธฑเธ">
+        <button class="nav-button is-active" data-view="overview">เธ เธฒเธเธฃเธงเธกเธฃเธฐเธเธ</button>
+        <button class="nav-button" data-view="events">Event Code</button>
+        <button class="nav-button" data-view="wizard">เน€เธฅเธทเธญเธเธเธฃเธฐเน€เธ เธ—เน€เธซเธ•เธธเธเธฒเธฃเธ“เน</button>
+        <button class="nav-button" data-view="calculators">เธเธณเธเธงเธ“ Index</button>
+        <button class="nav-button" data-view="afoee">AFoEE</button>
+        <button class="nav-button" data-view="cases">Case Study</button>
+        <button class="nav-button" data-view="glossary">Glossary</button>
+      </aside>
+
+      <section class="workspace">
+        <section class="view is-visible" id="overview">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Section 1</p>
+              <h2>เน€เธเนเธฒเนเธเธฃเธฐเธเธ GADS เธเธฒเธเธเนเธญเธกเธนเธฅเธ—เธตเนเธ•เนเธญเธเธฃเธฒเธขเธเธฒเธ</h2>
+            </div>
+            <p>เธฃเธฐเธเธเธเธฒเธเธเนเธญเธกเธนเธฅเธเธฅเธฒเธเธชเธณเธซเธฃเธฑเธเธเนเธญเธกเธนเธฅเธเธฒเธฃเธเธฅเธดเธ• เน€เธเธทเนเธญเน€เธเธฅเธดเธ เนเธฅเธฐเน€เธซเธ•เธธเธเธฒเธฃเธ“เนเธ—เธตเนเธเธฃเธฐเธ—เธเธเธณเธฅเธฑเธเธเธฅเธดเธ•เธเธญเธเนเธฃเธเนเธเธเนเธฒ เธเธเธ.</p>
+          </div>
+
+          <div class="flow-grid">
+            <article class="flow-node">
+              <span>1</span>
+              <h3>Input Data</h3>
+              <p>Generation, Event เนเธฅเธฐ Fuel Data เธฃเธฒเธขเธเธฒเธเธเนเธฒเธ Web Based Application เธซเธฃเธทเธญเน€เธเธทเนเธญเธกเธเธฒเธเธเนเธญเธกเธนเธฅเนเธฃเธเนเธเธเนเธฒ</p>
+            </article>
+            <article class="flow-node">
+              <span>2</span>
+              <h3>GADS SQL Database</h3>
+              <p>เธฃเธงเธเธฃเธงเธกเธเนเธญเธกเธนเธฅเธฃเธฒเธขเน€เธ”เธทเธญเธ เธ•เธฃเธงเธเธชเธญเธเธเธงเธฒเธกเธ–เธนเธเธ•เนเธญเธ เนเธฅเธฐเธเธฑเธ”เน€เธเนเธเธ•เธฒเธกเธเธดเธขเธฒเธก IEEE 762 / NERC GADS</p>
+            </article>
+            <article class="flow-node">
+              <span>3</span>
+              <h3>Reports & Dashboard</h3>
+              <p>เนเธเนเธ—เธณ GADS Report 1-8, เธฃเธฒเธขเธเธฒเธเธเธฅเธชเธฒเธขเธเธฒเธ เธฃเธงเธ., Dashboard เนเธฅเธฐเธชเธเธฑเธเธชเธเธธเธเธซเธเนเธงเธขเธเธฒเธเธญเธทเนเธ</p>
+            </article>
+          </div>
+
+          <div class="metric-strip">
+            <div><strong>8</strong><span>เธเธฃเธฐเน€เธ เธ—เนเธฃเธเนเธเธเนเธฒ</span></div>
+            <div><strong>45</strong><span>เนเธฃเธเนเธเธเนเธฒ</span></div>
+            <div><strong>147</strong><span>Units</span></div>
+            <div><strong>เธงเธฑเธเธ—เธตเน 5</strong><span>เธเธณเธซเธเธ”เธเธณเน€เธเนเธฒเธเนเธญเธกเธนเธฅเธ—เธธเธเน€เธ”เธทเธญเธ</span></div>
+          </div>
+
+          <div class="two-column">
+            <section class="panel">
+              <h3>เธชเธดเนเธเธ—เธตเนเธ•เนเธญเธเธฃเธฐเธงเธฑเธเธ•เธญเธเธเธฃเธญเธเธเนเธญเธกเธนเธฅ</h3>
+              <ul class="check-list">
+                <li>เธฃเธฐเธเธธเธเธทเนเธญเธญเธธเธเธเธฃเธ“เนเธซเธฃเธทเธญเธชเธฑเธเธเธฒเธ“เน€เธเนเธเธเธทเนเธญเน€เธ•เนเธก</li>
+                <li>เธเนเธฒ GAG เนเธฅเธฐ NAG เธเธญเนเธซเนเธเธฃเธญเธเธ—เธจเธเธดเธขเธก 6 เธ•เธณเนเธซเธเนเธ</li>
+                <li>NAG เธ•เธดเธ”เธฅเธเนเธ”เน เธซเธฒเธ Station Service เธกเธฒเธเธเธงเนเธฒ Gross Actual Generation</li>
+                <li>Hydro เธเธดเธเธฒเธฃเธ“เธฒ Code A เน€เธเธเธฒเธฐเน€เธซเธ•เธธเธเธฒเธฃเธ“เนเธ—เธตเนเธเธฃเธฐเธ—เธ Generator Mode</li>
+              </ul>
+            </section>
+            <section class="panel accent">
+              <h3>เธชเธกเธเธฒเธฃเน€เธงเธฅเธฒเนเธเธเธซเธฅเธฑเธ</h3>
+              <div class="formula-stack">
+                <code>PH = AH + UH</code>
+                <code>PH = SH + RH + UH</code>
+                <code>PH = SH + RH + POH + UOH</code>
+                <code>PH = SH + RH + POH + MOH + FOH</code>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="events">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Section 2</p>
+              <h2>Event Code เธ—เธตเนเธชเนเธเธเธฅเธ•เนเธญ Performance Index</h2>
+            </div>
+            <input class="search-input" id="eventSearch" type="search" placeholder="เธเนเธเธซเธฒ เน€เธเนเธ PO, U1, Derating" />
+          </div>
+          <div class="legend-row">
+            <span class="legend planned">Planned</span>
+            <span class="legend unplanned">Unplanned</span>
+            <span class="legend derating">Derating</span>
+            <span class="legend support">Support</span>
+          </div>
+          <div class="event-grid" id="eventGrid"></div>
+        </section>
+
+        <section class="view" id="wizard">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Decision Helper</p>
+              <h2>เธเนเธงเธขเน€เธฅเธทเธญเธ Event Type เธเธฒเธเน€เธเธทเนเธญเธเนเธเธเธฃเธดเธ</h2>
+            </div>
+            <p>เธ•เธญเธเธเธณเธ–เธฒเธกเธชเธฑเนเธ เน เน€เธเธทเนเธญเธ”เธนเธเธณเนเธเธฐเธเธณเน€เธเธทเนเธญเธเธ•เนเธ เธเธฃเนเธญเธกเน€เธซเธ•เธธเธเธฅเธญเนเธฒเธเธญเธดเธเธเธฒเธเธเธดเธขเธฒเธกเนเธเนเธเธฅเน</p>
+          </div>
+          <div class="wizard-layout">
+            <form class="panel" id="eventWizard">
+              <label>
+                เธฅเธฑเธเธฉเธ“เธฐเน€เธซเธ•เธธเธเธฒเธฃเธ“เน
+                <select name="kind">
+                  <option value="outage">เธซเธขเธธเธ”เน€เธเธฃเธทเนเธญเธ / เนเธกเนเธเธฃเนเธญเธกเน€เธ”เธดเธเน€เธเธฃเธทเนเธญเธ</option>
+                  <option value="derating">เธฅเธ”เธเธณเธฅเธฑเธเธเธฅเธดเธ• เนเธ•เนเธขเธฑเธเน€เธ”เธดเธเน€เธเธฃเธทเนเธญเธเนเธ”เน</option>
+                  <option value="reserved">เธเธฃเนเธญเธกเน€เธ”เธดเธเน€เธเธฃเธทเนเธญเธ เนเธ•เนเนเธกเนเนเธ”เนเธ–เธนเธเธชเธฑเนเธเน€เธ”เธดเธเน€เธเธฃเธทเนเธญเธ</option>
+                  <option value="secondary">เธเธฒเธเน€เธเธดเนเธกเน€เธ•เธดเธกเธฃเธฐเธซเธงเนเธฒเธเน€เธซเธ•เธธเธเธฒเธฃเธ“เนเธซเธฅเธฑเธ</option>
+                </select>
+              </label>
+              <label>
+                เธกเธตเนเธเธเธฅเนเธงเธเธซเธเนเธฒเธเธฑเธ”เน€เธเธเธซเธฃเธทเธญเนเธกเน
+                <select name="planning">
+                  <option value="planned">เธกเธตเนเธเธ Planned Outage</option>
+                  <option value="gt7">เธงเธฒเธเนเธเธเธซเธขเธธเธ”เนเธ”เนเธฅเนเธงเธเธซเธเนเธฒเน€เธเธดเธ 7 เธงเธฑเธ</option>
+                  <option value="lt6">เธ•เนเธญเธเธ”เธณเน€เธเธดเธเธเธฒเธฃเธ—เธฑเธเธ—เธตเธซเธฃเธทเธญเธ เธฒเธขเนเธ 6 เธเธฑเนเธงเนเธกเธ</option>
+                  <option value="lt7">เน€เธฅเธทเนเธญเธเนเธ”เนเน€เธเธดเธ 6 เธเธฑเนเธงเนเธกเธ เนเธ•เนเนเธกเนเน€เธเธดเธ 7 เธงเธฑเธ</option>
+                  <option value="after7">เน€เธฅเธทเนเธญเธเนเธ”เนเน€เธเธดเธ 7 เธงเธฑเธ เธเนเธญเธ PO เธเธฃเธฑเนเธเธซเธเนเธฒ</option>
+                  <option value="none">เนเธกเนเน€เธเธตเนเธขเธงเธเธฑเธเนเธเธ</option>
+                </select>
+              </label>
+              <label>
+                เธชเธ–เธฒเธเธฐเธฃเธฐเธซเธงเนเธฒเธ Startup
+                <select name="startup">
+                  <option value="none">เนเธกเนเนเธเน Startup</option>
+                  <option value="failBeforeSync">Startup เนเธฅเนเธงเธเธเธฒเธเน€เธเธฃเธทเนเธญเธเนเธกเนเธชเธณเน€เธฃเนเธ</option>
+                  <option value="failAfterSync">เธเธเธฒเธเนเธฅเนเธง เนเธ•เนเธเธถเนเธ Load เธ•เธฒเธกเธชเธฑเนเธเนเธกเนเนเธ”เน</option>
+                  <option value="testInScope">Trip/Shutdown เธฃเธฐเธซเธงเนเธฒเธ Startup Test เนเธ scope เธเธฒเธ PO</option>
+                </select>
+              </label>
+              <label>
+                เธเธฒเธฃเธฅเธ”เธเธณเธฅเธฑเธเธเธฅเธดเธ•เน€เธเนเธฒเน€เธเธ“เธ‘เน Derating เธซเธฃเธทเธญเนเธกเน
+                <select name="deratingRule">
+                  <option value="yes">เธฅเธ” Load เธกเธฒเธเธเธงเนเธฒ 2% เธเธญเธ GMC เธซเธฃเธทเธญเธขเธฒเธงเน€เธเธดเธ 30 เธเธฒเธ—เธต</option>
+                  <option value="no">เนเธกเนเน€เธเนเธฒเน€เธเธ“เธ‘เน</option>
+                  <option value="ambient">เน€เธเธดเธ”เธเธฒเธ Ambient / Seasonal Loss</option>
+                </select>
+              </label>
+            </form>
+            <section class="decision-panel" id="wizardResult"></section>
+          </div>
+        </section>
+
+        <section class="view" id="calculators">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Section 3</p>
+              <h2>เน€เธเธฃเธทเนเธญเธเธเธดเธ”เน€เธฅเธ Performance Index</h2>
+            </div>
+            <p>เนเธชเนเธเนเธฒเธ•เธฑเธงเธญเธขเนเธฒเธเนเธฅเนเธงเธ”เธนเธเธฅเธ—เธฑเธเธ—เธต เน€เธซเธกเธฒเธฐเธชเธณเธซเธฃเธฑเธเธ—เธงเธ logic เธเนเธญเธเธฃเธฒเธขเธเธฒเธเธเนเธญเธกเธนเธฅเธเธฃเธดเธ</p>
+          </div>
+          <div class="calc-tabs" role="tablist" aria-label="เน€เธฅเธทเธญเธเน€เธเธฃเธทเนเธญเธเธเธดเธ”เน€เธฅเธ">
+            <button class="tab-button is-active" data-calc="time">Time Factors</button>
+            <button class="tab-button" data-calc="gweaf">GWEAF / EAF</button>
+            <button class="tab-button" data-calc="nof">NOF</button>
+            <button class="tab-button" data-calc="station">Station Service</button>
+          </div>
+          <div class="calculator-panel" id="calculatorPanel"></div>
+        </section>
+
+        <section class="view" id="cases">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Case Study</p>
+              <h2>เธเธณเธฅเธญเธเน€เธซเธ•เธธเธเธฒเธฃเธ“เนเธเธฒเธเธชเนเธฅเธ”เน</h2>
+            </div>
+            <p>เน€เธฅเธทเธญเธเน€เธเธชเน€เธเธทเนเธญเธ”เธน timeline, Event Type เนเธฅเธฐเธเนเธญเธชเธฃเธธเธเธเธฑเนเธงเนเธกเธเธเธญเธเนเธ•เนเธฅเธฐ Unit</p>
+          </div>
+          <div class="case-list" id="caseList"></div>
+          <section class="case-detail" id="caseDetail"></section>
+        </section>
+
+        <section class="view" id="afoee">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">AFoEE Workshop 2024</p>
+              <h2>Availability Factor OEE</h2>
+            </div>
+            <p>เธ•เธฑเธงเธเธตเนเธงเธฑเธ”เธเธงเธฒเธกเธเธฃเนเธญเธกเธเนเธฒเธขเธ—เธตเนเธขเธเน€เธงเนเธเธเนเธงเธ Planned Outage เธ•เธฒเธกเน€เธเนเธฒเธซเธกเธฒเธข เนเธฅเธฐเนเธกเนเธซเธฑเธเธเธฅเธเธฃเธฐเธ—เธเธเธฒเธ Derating</p>
+          </div>
+
+          <div class="afoee-hero">
+            <section class="panel accent">
+              <h3>เธเธดเธขเธฒเธกเนเธเธเธซเธฅเธฑเธ</h3>
+              <p>AFoEE เธเธทเธญเธญเธฑเธ•เธฃเธฒเธชเนเธงเธเธเธญเธเธเธฑเนเธงเนเธกเธเธ—เธตเนเนเธฃเธเนเธเธเนเธฒเธเธฃเนเธญเธกเธเนเธฒเธขเนเธเธเนเธฒ เธ•เนเธญเธเธฑเนเธงเนเธกเธเธ—เธตเนเธเธฃเธฐเน€เธกเธดเธเธเธฅ เธซเธฅเธฑเธเธขเธเน€เธงเนเธ Planned Outage เธ—เธตเนเนเธกเนเน€เธเธดเธเน€เธเนเธฒเธซเธกเธฒเธข</p>
+              <div class="formula-stack">
+                <code>AH = PH - POHOEE - PEHOEE - UOH</code>
+                <code>AFoEE = AH / (PH - POHOEE) x 100</code>
+              </div>
+            </section>
+            <section class="panel">
+              <h3>เธเธญเธเน€เธเธ•เธ—เธตเนเธเธณเธกเธฒเธเธฃเธฐเน€เธกเธดเธ</h3>
+              <ul class="check-list">
+                <li>เนเธฃเธเนเธเธเนเธฒเธ—เธตเนเธญเธขเธนเนเนเธ Contracted Capacity เธ•เธฒเธก PDP เธซเธฅเธฑเธ COD</li>
+                <li>เนเธกเนเธญเธขเธนเนเธ เธฒเธขเนเธ•เน Warranty เนเธฅเธฐเนเธกเนเนเธเนเธเนเธงเธ 2 เธเธตเธเนเธญเธเธเธฅเธ”เน€เธเธฃเธทเนเธญเธเธ•เธฒเธก PDP/เธกเธ•เธด เธเธเธ.</li>
+                <li>เธเธต 2567 เนเธเนเนเธฃเธเนเธเธเนเธฒเธ—เธตเนเธกเธต Dispatch Factor เธกเธฒเธเธเธงเนเธฒ 0.1</li>
+                <li>เธเธณเธเธงเธ“เธ เธฒเธเธฃเธงเธกเธ”เนเธงเธข GMC Weighted Average เธเนเธญเธเน€เธเนเธฒเธชเธนเธ•เธฃ AFoEE</li>
+              </ul>
+            </section>
+          </div>
+
+          <div class="afoee-compare" id="afoeeCompare"></div>
+
+          <div class="two-column">
+            <section class="calculator-panel">
+              <div class="code-title">
+                <h3>AFoEE Calculator</h3>
+                <span class="badge planned">Time Based</span>
+              </div>
+              <form class="calc-grid afoee-form" id="afoeeCalc"></form>
+              <div class="result-grid" id="afoeeResults"></div>
+              <p class="note">เธ–เนเธฒเธเธดเธ”เธ เธฒเธเธฃเธงเธกเธซเธฅเธฒเธข Unit เนเธซเนเธ—เธณ GMC Weighted Average เธเธญเธ PH, AH เนเธฅเธฐ POHOEE เธเนเธญเธ เนเธฅเนเธงเธเธถเธเธเธณเธเธฅเธฃเธงเธกเน€เธเนเธฒเธชเธนเธ•เธฃ</p>
+            </section>
+
+            <section class="calculator-panel">
+              <div class="code-title">
+                <h3>เน€เธเนเธฒเธซเธกเธฒเธข AFOEE 2567</h3>
+                <span class="badge support">PA</span>
+              </div>
+              <table class="totals">
+                <thead><tr><th>เธฃเธฐเธ”เธฑเธ</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr></thead>
+                <tbody><tr><td>AFOEE</td><td>91.19%</td><td>92.02%</td><td>92.85%</td><td>93.68%</td><td>94.51%</td></tr></tbody>
+              </table>
+              <p>เธฃเธฐเธ”เธฑเธ 3 เนเธเนเธเนเธฒเน€เธเธฅเธตเนเธขเธขเนเธญเธเธซเธฅเธฑเธเธเธญเธ IPP, เธฃเธฐเธ”เธฑเธ 5 เนเธเนเธเนเธฒเธ—เธตเนเธ”เธตเธ—เธตเนเธชเธธเธ” เนเธฅเธฐ interval = (Level 5 - Level 3) / 2</p>
+              <div class="formula-stack">
+                <code>Unplanned target = 100 - 94.51 = 5.49%</code>
+                <code>เนเธเธเนเธเธเธ•เธฒเธกเธชเธฑเธ”เธชเนเธงเธ (PH - POHOEE) x GMC เธฃเธฒเธขเนเธฃเธเนเธเธเนเธฒ/เน€เธ”เธทเธญเธ</code>
+              </div>
+            </section>
+          </div>
+
+          <div class="afoee-rules" id="afoeeRules"></div>
+
+          <div class="section-head subhead">
+            <div>
+              <p class="eyebrow">Improvement Playbook</p>
+              <h2>เนเธเธงเธ—เธฒเธเธฅเธ” PE / UO เธเธฒเธ PMAS เนเธฅเธฐ Workshop</h2>
+            </div>
+            <input class="search-input" id="afoeeSearch" type="search" placeholder="เธเนเธเธซเธฒ เน€เธเนเธ PMAS, Bushing, Boiler" />
+          </div>
+          <div class="event-grid" id="afoeeActions"></div>
+        </section>
+
+        <section class="view" id="glossary">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Glossary</p>
+              <h2>เธเนเธเธซเธฒเธเธณเธขเนเธญเนเธฅเธฐเธชเธนเธ•เธฃเธชเธณเธเธฑเธ</h2>
+            </div>
+            <input class="search-input" id="glossarySearch" type="search" placeholder="เธเนเธเธซเธฒ เน€เธเนเธ SH, EUNDH, NOF" />
+          </div>
+          <div class="glossary-grid" id="glossaryGrid"></div>
+        </section>
+      </section>
+    </main>
+
+    <script>
+const events = [
+  {
+    code: "A",
+    label: "Card Code A",
+    group: "support",
+    title: "เน€เธซเธ•เธธเธเธฒเธฃเธ“เนเธซเธฅเธฑเธ",
+    desc: "เน€เธซเธ•เธธเธเธฒเธฃเธ“เนเธ—เธตเนเธชเนเธเธเธฅเธเธฃเธฐเธ—เธเธ•เนเธญเธเธฒเธฃเน€เธ”เธดเธเน€เธเธฃเธทเนเธญเธเน€เธเธทเนเธญเธเนเธฒเธขเนเธเธเนเธฒเน€เธเนเธฒเธฃเธฐเธเธ เนเธฅเธฐเธ–เธนเธเธเธณเนเธเธเธณเธเธงเธ“ Performance Index",
+    source: "เธซเธเนเธฒ 18"
+  },
+  {
+    code: "C",
+    label: "Card Code C",
+    group: "support",
+    title: "เน€เธซเธ•เธธเธเธฒเธฃเธ“เนเธฃเธญเธ",
+    desc: "เธเธฒเธเน€เธเธดเนเธกเน€เธ•เธดเธกเธฃเธฐเธซเธงเนเธฒเธเน€เธซเธ•เธธเธเธฒเธฃเธ“เนเธซเธฅเธฑเธ เนเธกเนเธ–เธนเธเธเธณเนเธเธเธณเธเธงเธ“ Performance Index เนเธฅเธฐเธ•เนเธญเธเนเธกเนเธเธฃเธฐเธ—เธ Generation Mode",
+    source: "เธซเธเนเธฒ 19"
+  },
+  {
+    code: "RS",
+    label: "Reserved Shutdown",
+    group: "support",
+    title: "เธเธฃเนเธญเธกเนเธ•เนเนเธกเนเนเธ”เนเธ–เธนเธเธชเธฑเนเธเน€เธ”เธดเธเน€เธเธฃเธทเนเธญเธ",
+    desc: "เนเธฃเธเนเธเธเนเธฒเธเธฃเนเธญเธกเน€เธ”เธดเธเน€เธเธฃเธทเนเธญเธ เนเธ•เนเนเธกเนเนเธ”เนเธเธเธฒเธเน€เธเธฃเธทเนเธญเธเน€เธเธฃเธฒเธฐเนเธกเนเธกเธตเธเธงเธฒเธกเธ•เนเธญเธเธเธฒเธฃเนเธเธเนเธฒเธเธฒเธเนเธฃเธเนเธเธเนเธฒเธเธฑเนเธ",
+    source: "เธซเธเนเธฒ 24"
+  },
+  {
+    code: "PO",
+    label: "Planned Outage",
+    group: "planned",
+    title: "เธซเธขเธธเธ”เน€เธเธฃเธทเนเธญเธเธ•เธฒเธกเนเธเธ",
+    desc: "เธเธฒเธเธ—เธตเนเธกเธตเนเธเธเธเธฑเธ”เน€เธเธ เธฃเธฐเธเธธเธงเธฑเธเน€เธฃเธดเนเธกเธ•เนเธเนเธฅเธฐเธชเธดเนเธเธชเธธเธ” เน€เธเนเธ Major Overhaul, Inspection, เธเธฒเธเธ•เธฒเธกเธเธเธซเธกเธฒเธข/EIA/EHIA",
+    source: "เธซเธเนเธฒ 26"
+  },
+  {
+    code: "PE",
+    label: "Planned Outage Extension",
+    group: "planned",
+    title: "เธเธขเธฒเธขเธเธฒเธ PO",
+    desc: "เธเธฑเนเธงเนเธกเธเธ—เธตเนเน€เธเธดเธเธเธณเธซเธเธ”เน€เธชเธฃเนเธเธเธญเธ Planned Outage เนเธ”เธขเนเธกเนเธฃเธงเธกเธเธฑเธเธซเธฒเธเธญเธ Original Scope of Work",
+    source: "เธซเธเนเธฒ 26"
+  },
+  {
+    code: "MO",
+    label: "Maintenance Outage",
+    group: "unplanned",
+    title: "เธซเธขเธธเธ”เธเธญเธเนเธเธเธ—เธตเนเธงเธฒเธเนเธเธเนเธ”เน",
+    desc: "เธซเธขเธธเธ”เน€เธเธฃเธทเนเธญเธเธเธญเธ Planned Outage เนเธ•เนเธชเธฒเธกเธฒเธฃเธ–เธเธณเธซเธเธ”เธงเธฑเธเธซเธขเธธเธ”เนเธ”เนเธฅเนเธงเธเธซเธเนเธฒเน€เธเธดเธ 7 เธงเธฑเธ",
+    source: "เธซเธเนเธฒ 29"
+  },
+  {
+    code: "ME",
+    label: "Maintenance Outage Extension",
+    group: "unplanned",
+    title: "เธเธขเธฒเธขเธเธฒเธ MO",
+    desc: "เธเธฑเนเธงเนเธกเธเธ—เธตเนเน€เธเธดเธเธเธณเธซเธเธ”เน€เธชเธฃเนเธเธเธญเธ Maintenance Outage เนเธ”เธขเนเธกเนเธฃเธงเธกเธเธฑเธเธซเธฒเธเธญเธ Original Scope of Work",
+    source: "เธซเธเนเธฒ 29"
+  },
+  {
+    code: "U1",
+    label: "Immediate",
+    group: "unplanned",
+    title: "Forced Outage เธ—เธฑเธเธ—เธต",
+    desc: "เธ•เนเธญเธเธเธฅเธ”เน€เธเธฃเธทเนเธญเธเธ—เธฑเธเธ—เธต เธซเธฃเธทเธญเน€เธเธฃเธทเนเธญเธ Trip off เธเธฒเธเธญเธธเธเธเธฃเธ“เนเธเนเธญเธเธเธฑเธเน€เธเธฃเธทเนเธญเธเธซเธฃเธทเธญเธฃเธฐเธเธเธชเนเธ",
+    source: "เธซเธเนเธฒ 31"
+  },
+  {
+    code: "U2",
+    label: "Delayed",
+    group: "unplanned",
+    title: "Forced Outage เธ เธฒเธขเนเธ 6 เธเธฑเนเธงเนเธกเธ",
+    desc: "เนเธกเนเธ•เนเธญเธเธเธฅเธ”เธ—เธฑเธเธ—เธต เนเธ•เนเธ•เนเธญเธเธเธณเน€เธเธฃเธทเนเธญเธเธญเธญเธเธเธฒเธเธเธฒเธฃเนเธเนเธเธฒเธเธ เธฒเธขเนเธ 6 เธเธฑเนเธงเนเธกเธ",
+    source: "เธซเธเนเธฒ 31"
+  },
+  {
+    code: "U3",
+    label: "Postponed",
+    group: "unplanned",
+    title: "Forced Outage เธ เธฒเธขเนเธ 7 เธงเธฑเธ",
+    desc: "เธเธฐเธฅเธญเธเธฒเธฃเธเธณเน€เธเธฃเธทเนเธญเธเธญเธญเธเนเธ”เนเน€เธเธดเธ 6 เธเธฑเนเธงเนเธกเธ เนเธ•เนเธ•เนเธญเธเธเธณเธญเธญเธเธ เธฒเธขเนเธ 7 เธงเธฑเธ",
+    source: "เธซเธเนเธฒ 31"
+  },
+  {
+    code: "SF",
+    label: "Startup Failure",
+    group: "unplanned",
+    title: "Startup เนเธกเนเธชเธณเน€เธฃเนเธ",
+    desc: "เธญเธขเธนเนเธฃเธฐเธซเธงเนเธฒเธ Startup เนเธฅเนเธงเนเธกเนเธชเธฒเธกเธฒเธฃเธ–เธเธเธฒเธเน€เธเธฃเธทเนเธญเธเน€เธเนเธฒเธฃเธฐเธเธเนเธ”เนเธชเธณเน€เธฃเนเธ เธซเธฒเธเธเธเธฒเธเนเธฅเนเธงเนเธ•เนเธเธถเนเธ Load เนเธกเนเนเธ”เน เนเธซเนเธเธดเธเธฒเธฃเธ“เธฒ U1",
+    source: "เธซเธเนเธฒ 31"
+  },
+  {
+    code: "PD",
+    label: "Planned Derating",
+    group: "derating",
+    title: "เธฅเธ”เธเธณเธฅเธฑเธเธเธฅเธดเธ•เธ•เธฒเธกเนเธเธ",
+    desc: "เธกเธตเธเธฒเธฃเธงเธฒเธเนเธเธเธเธฑเธ”เน€เธเธเนเธฅเธฐเธเธณเธซเธเธ”เธฃเธฐเธขเธฐเน€เธงเธฅเธฒเนเธงเนเธฅเนเธงเธเธซเธเนเธฒ เน€เธเนเธ เธ—เธ”เธชเธญเธเธเนเธญเธ/เธซเธฅเธฑเธ Planned Outage",
+    source: "เธซเธเนเธฒ 34"
+  },
+  {
+    code: "D1",
+    label: "Immediate Derating",
+    group: "derating",
+    title: "เธฅเธ”เธเธณเธฅเธฑเธเธเธฅเธดเธ•เธ—เธฑเธเธ—เธต",
+    desc: "เธ•เนเธญเธเธฅเธ”เธเธตเธ”เธเธงเธฒเธกเธชเธฒเธกเธฒเธฃเธ–เนเธเธเธฒเธฃเธเนเธฒเธขเนเธเธเนเธฒเธ—เธฑเธเธ—เธตเธ—เธฑเธเนเธ”",
+    source: "เธซเธเนเธฒ 34"
+  },
+  {
+    code: "D2",
+    label: "Delayed Derating",
+    group: "derating",
+    title: "เธฅเธ”เธ เธฒเธขเนเธ 6 เธเธฑเนเธงเนเธกเธ",
+    desc: "เนเธกเนเธ•เนเธญเธเธฅเธ”เธ—เธฑเธเธ—เธต เนเธ•เนเธ•เนเธญเธเธฅเธ”เธเธณเธฅเธฑเธเธเธฅเธดเธ•เธ เธฒเธขเนเธ 6 เธเธฑเนเธงเนเธกเธ",
+    source: "เธซเธเนเธฒ 34"
+  },
+  {
+    code: "D3",
+    label: "Postponed Derating",
+    group: "derating",
+    title: "เธฅเธ”เธ เธฒเธขเนเธ 7 เธงเธฑเธ",
+    desc: "เน€เธฅเธทเนเธญเธเธเธฒเธฃเธฅเธ”เธเธณเธฅเธฑเธเธเธฅเธดเธ•เนเธ”เนเน€เธเธดเธ 6 เธเธฑเนเธงเนเธกเธ เนเธ•เนเธ•เนเธญเธเนเธกเนเน€เธเธดเธ 7 เธงเธฑเธ",
+    source: "เธซเธเนเธฒ 34"
+  },
+  {
+    code: "D4",
+    label: "Maintenance Derating",
+    group: "derating",
+    title: "เธฅเธ”เธซเธฅเธฑเธ 7 เธงเธฑเธเธเนเธญเธ PO",
+    desc: "เธฅเธ”เธเธณเธฅเธฑเธเธเธฅเธดเธ•เนเธ”เนเธซเธฅเธฑเธ 7 เธงเธฑเธ เนเธ•เนเธ•เนเธญเธเธ—เธณเธเนเธญเธ PO เธเธฃเธฑเนเธเธซเธเนเธฒ เธกเธฑเธเน€เธเธดเธ”เธเธฒเธเธเธฒเธฃเธ—เธ”เธชเธญเธเธญเธธเธเธเธฃเธ“เนเธ•เธฒเธกเธฃเธฐเธขเธฐเน€เธงเธฅเธฒ",
+    source: "เธซเธเนเธฒ 34"
+  },
+  {
+    code: "GDC",
+    label: "Seasonal Derating",
+    group: "derating",
+    title: "Ambient Loss",
+    desc: "เธเธฒเธฃเธฅเธ”เธเธณเธฅเธฑเธเธเธฅเธดเธ•เธเธฒเธเธชเธ เธฒเธเนเธงเธ”เธฅเนเธญเธกเธ•เธฒเธกเธคเธ”เธนเธเธฒเธฅ เธฃเธฒเธขเธเธฒเธเนเธเธเธเนเธฒเน€เธเธฅเธตเนเธขเนเธฅเธฐเนเธเน Gross Dependable Capacity",
+    source: "เธซเธเนเธฒ 34"
+  }
+];
+
+const glossary = [
+  ["GADS", "Generating Availability Data System", "เธฃเธฐเธเธเธเธฒเธเธเนเธญเธกเธนเธฅเธเธฅเธฒเธเธชเธณเธซเธฃเธฑเธเธเนเธญเธกเธนเธฅเธเธฒเธฃเธเธฅเธดเธ• เน€เธเธทเนเธญเน€เธเธฅเธดเธ เนเธฅเธฐเน€เธซเธ•เธธเธเธฒเธฃเธ“เนเธ—เธตเนเธเธฃเธฐเธ—เธเธเธณเธฅเธฑเธเธเธฅเธดเธ•"],
+  ["PH", "Period Hours", "เธเธณเธเธงเธเธเธฑเนเธงเนเธกเธเธ—เธฑเนเธเธซเธกเธ”เนเธเธเนเธงเธเธ—เธตเนเธเธดเธเธฒเธฃเธ“เธฒ เน€เธเนเธ เธงเธฑเธ เน€เธ”เธทเธญเธ เธซเธฃเธทเธญเธเธต"],
+  ["SH", "Service Hours", "เธเธณเธเธงเธเธเธฑเนเธงเนเธกเธเธ—เธตเนเนเธฃเธเนเธเธเนเธฒเธเธเธฒเธเน€เธเธฃเธทเนเธญเธเนเธฅเธฐเธเนเธฒเธขเนเธเน€เธเนเธฒเธฃเธฐเธเธ"],
+  ["RH", "Reserved Shutdown Hours", "เธเธณเธเธงเธเธเธฑเนเธงเนเธกเธเธ—เธตเนเธเธฃเนเธญเธกเน€เธ”เธดเธเน€เธเธฃเธทเนเธญเธ เนเธ•เนเนเธกเนเนเธ”เนเธ–เธนเธเธเธเธฒเธเน€เธเธฃเธฒเธฐเนเธกเนเธกเธต dispatch"],
+  ["AH", "Available Hours", "เธเธณเธเธงเธเธเธฑเนเธงเนเธกเธเธ—เธตเนเนเธฃเธเนเธเธเนเธฒเธเธฃเนเธญเธกเน€เธ”เธดเธเน€เธเธฃเธทเนเธญเธ เธเธณเธเธงเธ“เนเธ”เนเธเธฒเธ SH + RH"],
+  ["UH", "Unavailable Hours", "เธเธณเธเธงเธเธเธฑเนเธงเนเธกเธเธ—เธตเนเนเธฃเธเนเธเธเนเธฒเนเธกเนเธเธฃเนเธญเธกเน€เธ”เธดเธเน€เธเธฃเธทเนเธญเธ"],
+  ["POH", "Planned Outage Hours", "เธเธฑเนเธงเนเธกเธเธฃเธงเธกเธเธญเธ PO เนเธฅเธฐ PE"],
+  ["UOH", "Unplanned Outage Hours", "เธเธฑเนเธงเนเธกเธเธซเธขเธธเธ”เน€เธเธฃเธทเนเธญเธเธเธญเธเนเธเธ Planned Outage"],
+  ["MOH", "Maintenance Outage Hours", "เธเธฑเนเธงเนเธกเธเธฃเธงเธกเธเธญเธ MO เนเธฅเธฐ ME"],
+  ["FOH", "Forced Outage Hours", "เธเธฑเนเธงเนเธกเธเธฃเธงเธกเธเธญเธ SF, U1, U2 เนเธฅเธฐ U3"],
+  ["ESEDH", "Equivalent Seasonal Derated Hours", "เธเธฑเนเธงเนเธกเธเน€เธ—เธตเธขเธเน€เธ—เนเธฒเธเธฒเธฃเธฅเธ”เธเธณเธฅเธฑเธเธเธฅเธดเธ•เธเธฒเธ Seasonal Derating"],
+  ["EPDH", "Equivalent Planned Derated Hours", "เธเธฑเนเธงเนเธกเธเน€เธ—เธตเธขเธเน€เธ—เนเธฒเธเธฒเธฃเธฅเธ”เธเธณเธฅเธฑเธเธเธฅเธดเธ•เธเธฒเธ PD"],
+  ["EUDH", "Equivalent Unplanned Derated Hours", "เธเธฑเนเธงเนเธกเธเน€เธ—เธตเธขเธเน€เธ—เนเธฒเธเธฒเธฃเธฅเธ”เธเธณเธฅเธฑเธเธเธฅเธดเธ•เธเธฒเธ D1-D4"],
+  ["EUNDH", "Equivalent Unit Derated Hours", "EPDH + EUDH"],
+  ["GWEAF", "Gross Weighted Equivalent Availability Factor", "(AH - EUNDH) / PH x 100 เนเธกเนเธซเธฑเธ Seasonal Derating"],
+  ["EAF", "Equivalent Availability Factor", "100 - POF - UOF - UDF - SEDF"],
+  ["NOF", "Net Output Factor", "NAG / (SH x CC) x 100 เนเธ”เธขเนเธเธฅเธ MkWh เน€เธเนเธ MWh เธเนเธญเธ"],
+  ["NAG", "Net Actual Generation", "GAG - Station Service เนเธฅเธฐเธญเธฒเธเธ•เธดเธ”เธฅเธเนเธ”เน"],
+  ["MSTUO", "Mean Service Time to Unplanned Outage", "SH / #UO เธ–เนเธฒ #UO = 0 เนเธซเนเนเธเนเธเนเธฒ SH"],
+  ["AFoEE", "Availability Factor OEE", "AH / (PH - POHOEE) x 100 เนเธเนเธเธฃเธฐเน€เธกเธดเธเธเธงเธฒเธกเธเธฃเนเธญเธกเธเนเธฒเธขเนเธ”เธขเธขเธเน€เธงเนเธ Planned Outage เธ•เธฒเธกเน€เธเนเธฒเธซเธกเธฒเธข"],
+  ["POHOEE", "Planned Outage Hours OEE", "เธเธฑเนเธงเนเธกเธ Planned Outage เธ—เธตเนเธเธณเธกเธฒเธขเธเน€เธงเนเธเนเธเธเธฒเธฃเธเธฃเธฐเน€เธกเธดเธ AFoEE เนเธ”เธขเธ•เนเธญเธเนเธกเนเน€เธเธดเธเนเธเธเธ—เธตเนเธเธณเธซเธเธ”"],
+  ["PEHOEE", "Planned Outage Extension Hours OEE", "เธเธฑเนเธงเนเธกเธเธ—เธตเนเธเธขเธฒเธขเน€เธเธดเธเธเธณเธซเธเธ”เน€เธชเธฃเนเธเธเธญเธ Planned Outage เนเธฅเธฐเธเธฃเธฐเธ—เธ AFoEE"],
+  ["DF", "Dispatch Factor", "เนเธเนเธเธฑเธ”เน€เธฅเธทเธญเธเนเธฃเธเนเธเธเนเธฒเธ—เธตเนเธเธณเธกเธฒเธเธฃเธฐเน€เธกเธดเธ AFoEE เนเธเธเธต 2567 เนเธ”เธขเน€เธเธ“เธ‘เนเธเธทเธญเธกเธฒเธเธเธงเนเธฒ 0.1"],
+  ["PMAS", "Power Plant Monitoring and Analytics System", "เธฃเธฐเธเธเธ•เธดเธ”เธ•เธฒเธกเธชเธฑเธเธเธฒเธ“เนเธฅเธฐเธ—เธณ predictive analytics เน€เธเธทเนเธญเนเธเนเธเน€เธ•เธทเธญเธเธเธงเธฒเธกเธเธดเธ”เธเธเธ•เธดเธเนเธญเธเน€เธเธดเธ”เธเธงเธฒเธกเน€เธชเธตเธขเธซเธฒเธขเธฃเธธเธเนเธฃเธ"]
+];
+
+const glossaryLookup = new Map(
+  glossary.map(([term, full, desc]) => [term.toUpperCase(), { term, full, desc }])
+);
+
+const glossaryPattern = new RegExp(
+  `\\b(${[...glossaryLookup.values()]
+    .map((item) => item.term)
+    .sort((a, b) => b.length - a.length)
+    .map((term) => term.replace(/[.*+?^${}()|[\]\\]/g, "\\<script src="app.js"></script>"))
+    .join("|")})\\b`,
+  "gi"
+);
+
+function enhanceGlossaryTerms(root = document) {
+  const blockedTags = new Set(["SCRIPT", "STYLE", "INPUT", "SELECT", "TEXTAREA", "BUTTON"]);
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+    acceptNode(node) {
+      const parent = node.parentElement;
+      if (!parent || blockedTags.has(parent.tagName) || parent.closest(".glossary-term")) {
+        return NodeFilter.FILTER_REJECT;
+      }
+      if (!glossaryPattern.test(node.nodeValue)) {
+        glossaryPattern.lastIndex = 0;
+        return NodeFilter.FILTER_REJECT;
+      }
+      glossaryPattern.lastIndex = 0;
+      return NodeFilter.FILTER_ACCEPT;
+    }
+  });
+
+  const nodes = [];
+  while (walker.nextNode()) nodes.push(walker.currentNode);
+
+  nodes.forEach((node) => {
+    const fragment = document.createDocumentFragment();
+    let lastIndex = 0;
+    node.nodeValue.replace(glossaryPattern, (match, _term, offset) => {
+      const key = match.toUpperCase();
+      const item = glossaryLookup.get(key);
+      if (!item) return match;
+      fragment.append(document.createTextNode(node.nodeValue.slice(lastIndex, offset)));
+      const span = document.createElement("span");
+      span.className = "glossary-term";
+      span.tabIndex = 0;
+      span.textContent = match;
+      span.dataset.glossary = `${item.term}: ${item.full} - ${item.desc}`;
+      fragment.append(span);
+      lastIndex = offset + match.length;
+      return match;
+    });
+    fragment.append(document.createTextNode(node.nodeValue.slice(lastIndex)));
+    node.parentNode.replaceChild(fragment, node);
+    glossaryPattern.lastIndex = 0;
+  });
+}
+
+const afoeeCompare = [
+  {
+    title: "AF",
+    desc: "เธงเธฑเธ”เธชเธฑเธ”เธชเนเธงเธเธเธฑเนเธงเนเธกเธเธเธฃเนเธญเธกเธเนเธฒเธขเนเธเธเนเธฒเน€เธเนเธฒเธฃเธฐเธเธเธ•เนเธญเธเธฑเนเธงเนเธกเธเธ—เธฑเนเธเธซเธกเธ”เธ—เธตเนเธเธดเธเธฒเธฃเธ“เธฒ",
+    formula: "AF = AH / PH x 100",
+    note: "AH = SH + RH เธซเธฃเธทเธญ PH - POH - UOH"
+  },
+  {
+    title: "GWEAF",
+    desc: "เธงเธฑเธ”เธเธงเธฒเธกเธเธฃเนเธญเธกเธเนเธฒเธขเนเธ”เธขเธซเธฑเธเธเธฅเธเธญเธ Planned/Unplanned Derating เน€เธเนเธเธเธฑเนเธงเนเธกเธเน€เธ—เธตเธขเธเน€เธ—เนเธฒ",
+    formula: "GWEAF = (AH - EUNDH) / PH x 100",
+    note: "เนเธกเนเธซเธฑเธ Seasonal Derating เธ•เธฒเธกเธชเนเธฅเธ”เน GADS"
+  },
+  {
+    title: "AFoEE",
+    desc: "เธงเธฑเธ”เธเธงเธฒเธกเธเธฃเนเธญเธกเธเนเธฒเธขเธชเธณเธซเธฃเธฑเธ PA เนเธ”เธขเธขเธเน€เธงเนเธเธเนเธงเธ Planned Outage เธ•เธฒเธกเน€เธเนเธฒเธซเธกเธฒเธข เนเธฅเธฐเนเธกเนเธเธดเธเธฒเธฃเธ“เธฒ Derating",
+    formula: "AFoEE = AH / (PH - POHOEE) x 100",
+    note: "AH = PH - POHOEE - PEHOEE - UOH"
+  }
+];
+
+const afoeeRules = [
+  {
+    title: "เธเธขเธฒเธขเน€เธงเธฅเธฒเธซเธขเธธเธ”เน€เธเธฃเธทเนเธญเธ",
+    desc: "เธเนเธฒเน€เธเนเธฒเธซเธกเธฒเธข PO เนเธกเนเธเธฃเธฑเธเน€เธเธดเนเธก เธซเธฒเธเน€เธเธดเธเนเธเธเธเธฐเน€เธเธดเธ” PE / MO / FO เธ•เธฒเธกเธชเธฒเน€เธซเธ•เธธ",
+    source: "AFOEE slide เธซเธเนเธฒ 20"
+  },
+  {
+    title: "เธฅเธ”เธฃเธฐเธขเธฐเน€เธงเธฅเธฒเธซเธขเธธเธ”เน€เธเธฃเธทเนเธญเธ",
+    desc: "เธเนเธฒเน€เธเนเธฒเธซเธกเธฒเธขเธเธฐเธ–เธนเธเธเธฃเธฑเธเธฅเธ”เธ•เธฒเธกเธฃเธฐเธขเธฐเน€เธงเธฅเธฒเนเธซเธกเนเธ—เธตเนเนเธฃเธเนเธเธเนเธฒเนเธเนเธ เนเธ”เธขเธ•เนเธญเธเนเธเนเธเธเนเธญเธเน€เธฃเธดเนเธกเธเธฒเธ PO",
+    source: "AFOEE slide เธซเธเนเธฒ 21"
+  },
+  {
+    title: "เน€เธฅเธทเนเธญเธเนเธเธเธเธฒเธ",
+    desc: "เธเนเธฒเน€เธเนเธฒเธซเธกเธฒเธขเธฃเธฒเธขเน€เธ”เธทเธญเธเน€เธเธฅเธตเนเธขเธเธ•เธฒเธกเนเธเธเนเธซเธกเน เนเธ•เนเธฃเธฐเธขเธฐเน€เธงเธฅเธฒเธ”เธณเน€เธเธดเธเธเธฒเธเน€เธ—เนเธฒเน€เธ”เธดเธก",
+    source: "AFOEE slide เธซเธเนเธฒ 22"
+  },
+  {
+    title: "เนเธขเธเนเธเธเธ เธฒเธขเธซเธฅเธฑเธ",
+    desc: "เนเธขเธเน€เธเนเธฒเธ•เธฒเธกเธเธฒเธ เธเธฒเธเนเธฃเธเน€เธชเธฃเนเธเน€เธฃเนเธงเนเธกเนเธ—เธ”เน€เธงเธฅเธฒเนเธซเนเธเธฒเธเธ–เธฑเธ”เนเธ เนเธฅเธฐเธเธฒเธเนเธฃเธเธเนเธฒเนเธกเนเธเธณเน€เธงเธฅเธฒเธเธฒเธเธ–เธฑเธ”เนเธเธกเธฒเธเธ”เน€เธเธข",
+    source: "AFOEE slide เธซเธเนเธฒ 23"
+  },
+  {
+    title: "LTSA เนเธเธฐเธเธณเธซเธขเธธเธ”เน€เธเธดเนเธก",
+    desc: "เธเธฃเธฑเธเน€เธเนเธฒเธซเธกเธฒเธขเนเธ”เนเน€เธเธเธฒเธฐเธเธฃเธ“เธตเธเธนเนเธชเธฑเธเธเธฒ LTSA เนเธเนเธเน€เธเนเธ UOD เธ•เธฒเธกเธชเธฑเธเธเธฒ เนเธฅเธฐเธ•เธฒเธกเธเธฃเธญเธเน€เธงเธฅเธฒเธ—เธตเนเนเธเนเธเน€เธเธดเนเธกเน€เธ—เนเธฒเธเธฑเนเธ",
+    source: "AFOEE slide เธซเธเนเธฒ 20"
+  },
+  {
+    title: "UOH margin",
+    desc: "เน€เธเนเธฒเธซเธกเธฒเธขเธฃเธฐเธ”เธฑเธ 5 เธ—เธตเน 94.51% เน€เธ—เนเธฒเธเธฑเธเธกเธตเธเธฃเธญเธ Unplanned 5.49% เธเนเธญเธเนเธเธเนเธเธเธ•เธฒเธก (PH - POHOEE) x GMC",
+    source: "AFOEE slide เธซเธเนเธฒ 16"
+  }
+];
+
+const afoeeActions = [
+  {
+    title: "PMAS Early Warning",
+    group: "support",
+    tag: "PMAS",
+    desc: "เนเธเน DCS/PI database เนเธฅเธฐ Neural Network เน€เธ—เธตเธขเธเธเนเธฒเธเธฃเธดเธเธเธฑเธเธเนเธฒเธเธฒเธ”เธเธฒเธฃเธ“เน เน€เธเธทเนเธญเนเธเนเธ deviation เธเนเธญเธ DCS alarm",
+    detail: "เธเธฃเธ“เธต NB-C1 เธ•เธฃเธงเธเธเธ Compressor Efficiency เธฅเธ”เธฅเธเธเธฒเธ Cooling Water เธฃเธฑเนเธง เธเนเธงเธขเธซเธฅเธตเธเน€เธฅเธตเนเธขเธเธเธงเธฒเธกเน€เธชเธตเธขเธซเธฒเธขเนเธฅเธฐเธเธ—เธเธฃเธฑเธเนเธ”เน",
+    source: "Slide เธซเธเนเธฒ 33-39"
+  },
+  {
+    title: "Trip Event to Failure KPI",
+    group: "support",
+    tag: "RCA/FMEA",
+    desc: "เธงเธดเน€เธเธฃเธฒเธฐเธซเน Trip Event เนเธฅเนเธงเธเธดเธเธฒเธฃเธ“เธฒเธงเนเธฒเธชเธฑเธเธเธฒเธ“เนเธ”เธชเธฃเนเธฒเธ Monitoring Indicator เนเธ”เน เธเธฒเธเธเธฑเนเธเธเธขเธฒเธข KPI เนเธเธ—เธธเธเนเธฃเธเนเธเธเนเธฒ",
+    detail: "เนเธเธงเธ—เธฒเธเธเธฃเธฐเธเธญเธเธ”เนเธงเธข RCA, เธเธดเธ” gap เธเธฒเธ logic trip เธ—เธฑเนเธเธซเธกเธ” เนเธฅเธฐเธซเธฒเน€เธเธฃเธทเนเธญเธเธกเธทเธญเธ•เธฃเธงเธเธเธฑเธ failure เธ—เธตเน PMAS เธขเธฑเธเนเธกเนเธเธฃเธญเธเธเธฅเธธเธก",
+    source: "Slide เธซเธเนเธฒ 41-43"
+  },
+  {
+    title: "HV Bushing Risk Control",
+    group: "planned",
+    tag: "Bushing",
+    desc: "เธฃเธฐเธขเธฐเธชเธฑเนเธเนเธเน Thermoscan, Electrical Test เธเนเธงเธ PO, เธ—เธ”เธชเธญเธ PD เธเธญเธ spare เนเธฅเธฐเธเธดเธเธฒเธฃเธ“เธฒ Online Monitoring",
+    detail: "เธฃเธฐเธขเธฐเธขเธฒเธงเน€เธเธฅเธตเนเธขเธ OIP เน€เธเนเธ RIP/RIS เน€เธเธทเนเธญเธฅเธ”เธเธงเธฒเธกเน€เธชเธตเนเธขเธเนเธเนเธซเธกเนเนเธฅเธฐเธเธณเธเธฑเธ”เธเธญเธเน€เธเธ•เธเธงเธฒเธกเน€เธชเธตเธขเธซเธฒเธข",
+    source: "Slide เธซเธเนเธฒ 55-63"
+  },
+  {
+    title: "Bushing Online Monitoring",
+    group: "support",
+    tag: "Monitoring",
+    desc: "เธ•เธดเธ”เธ•เธฒเธก C1, delta C1, tan delta, delta tan delta เนเธฅเธฐ voltage reference เนเธเธ online",
+    detail: "เน€เธเธ“เธ‘เนเธ•เธฑเธงเธญเธขเนเธฒเธ: delta C1 เนเธกเนเธเธงเธฃเน€เธเธดเธ 2%, delta tan delta เน€เธ—เธตเธขเธ 0.3% เนเธกเนเธเธงเธฃเน€เธเธดเธ 0.5%",
+    source: "Slide เธซเธเนเธฒ 70-78"
+  },
+  {
+    title: "Boiler Tube Leak Playbook",
+    group: "unplanned",
+    tag: "Boiler",
+    desc: "เธเธฑเธ”เธ—เธณ failure mapping เนเธขเธ Soot Erosion, Thermal Fatigue, Welding Defect, Overheat, Slag Impact, Fly Ash Erosion เนเธฅเธฐ Fire Side Corrosion",
+    detail: "เธกเธฒเธ•เธฃเธเธฒเธฃเน€เธเนเธเน€เธเธดเนเธกเน€เธเธ“เธ‘เนเธ•เธฑเธ”เน€เธเธฅเธตเนเธขเธเธเธงเธฒเธกเธซเธเธฒ, thermal spray, overlay, refractory, CFD เนเธฅเธฐ combustion tuning",
+    source: "Slide เธซเธเนเธฒ 81-95"
+  },
+  {
+    title: "Compressor Blade Damage",
+    group: "unplanned",
+    tag: "Compressor",
+    desc: "เธเธฃเธ“เธต WN-C41 Trip เธเธฒเธ Compressor Surge Protection เธเธเธเธงเธฒเธกเน€เธชเธตเธขเธซเธฒเธข Compressor Blade/Vane Stage 7-15",
+    detail: "เธเธฑเธเธเธฑเธขเธชเธณเธเธฑเธเธเธทเธญ spare parts, de-stacking tools, manpower เนเธฅเธฐ daily meeting เธเธฑเธ OEM/เธซเธเนเธงเธขเธเธฒเธเน€เธเธตเนเธขเธงเธเนเธญเธ",
+    source: "Slide เธซเธเนเธฒ 99-108"
+  },
+  {
+    title: "UTPA Vane Hook Inspection",
+    group: "planned",
+    tag: "Lesson Learned",
+    desc: "เธเธฃเธ“เธต compressor เน€เธชเธตเธขเธซเธฒเธขเธกเธตเธชเธกเธกเธ•เธดเธเธฒเธเธเธฒเธ wear/crack เธเธญเธ vane hook เธเธถเธเนเธเธฐเธเธณเธ•เธฃเธงเธ vane hook เธ”เนเธงเธข UTPA เธ—เธธเธ HGPI เนเธฅเธฐ MO",
+    detail: "เธเธงเธฃ review history เนเธฅเธฐเธเธดเธเธฒเธฃเธ“เธฒ replace เน€เธกเธทเนเธญเธเธ wear เนเธ segment เธเธณเธเธงเธเธกเธฒเธ",
+    source: "Slide เธซเธเนเธฒ 117-123"
+  },
+  {
+    title: "Pending / Backlog Priority",
+    group: "support",
+    tag: "Workshop",
+    desc: "เธเธฑเธ”เธฅเธณเธ”เธฑเธ critical parts, เธ—เธณ action plan, เน€เธ•เธฃเธตเธขเธก spare/gเธณเธฅเธฑเธเธเธ เนเธฅเธฐเธเธณเธเธฒเธ pending เน€เธเนเธฒ Planned Outage เน€เธ—เนเธฒเธ—เธตเนเน€เธซเธกเธฒเธฐเธชเธก",
+    detail: "เน€เธชเธฃเธดเธก online monitoring, operator/maintenance inspection เนเธฅเธฐ roll in-roll out spare เธชเธณเธซเธฃเธฑเธเธญเธธเธเธเธฃเธ“เนเน€เธชเธตเนเธขเธ",
+    source: "Workshop เธซเธเนเธฒ 2, 9"
+  },
+  {
+    title: "Planned Outage Extension 4M",
+    group: "planned",
+    tag: "PE",
+    desc: "เธเธฑเธเธเธฑเธข PE เนเธเนเธเน€เธเนเธ Man, Machine, Method, Material เน€เธเนเธ เธเธงเธฒเธกเน€เธเธตเนเธขเธงเธเธฒเธ, เธญเธธเธเธเธฃเธ“เนเธญเธฒเธขเธธเธชเธนเธ, เธชเธฃเธธเธเนเธเธงเธ—เธฒเธเธเธฒเธ unforeseen เธเนเธฒ, spare/special tool เธเธณเธฃเธธเธ”",
+    detail: "เนเธเธงเธ—เธฒเธเธเธทเธญเธเธฑเธ’เธเธฒเธ—เธฑเธเธฉเธฐ, เธเนเธขเธเธฒเธข critical parts, เธขเธทเธ”เธซเธขเธธเนเธเธซเธฅเธฑเธเน€เธเธ“เธ‘เน PO เนเธฅเธฐเธเธฑเธ”เธซเธฒ NDT/Monitoring/Robot/AI",
+    source: "Workshop เธซเธเนเธฒ 5-7"
+  },
+  {
+    title: "Maintenance Management",
+    group: "support",
+    tag: "Long Term",
+    desc: "Review & Optimize Worklist, เธเธฑเธ’เธเธฒ CBM เธ•เนเธญเน€เธเธทเนเธญเธ, เธ—เธเธ—เธงเธ Turnaround Management เนเธฅเธฐเธชเธฃเนเธฒเธ feedback loop เธเนเธฒเธกเนเธฃเธเนเธเธเนเธฒ",
+    detail: "เธฃเธงเธกเธ–เธถเธเธชเธฃเนเธฒเธ inspector, sharing เน€เธ—เธเนเธเนเธฅเธขเธตเธเธณเธฃเธธเธเธฃเธฑเธเธฉเธฒ, เธซเธฒ partner เนเธฅเธฐเธเธฃเธฑเธเธเธฒเธฃเน€เธ”เธดเธเน€เธเธฃเธทเนเธญเธเนเธซเนเน€เธซเธกเธฒเธฐเธเธฑเธเธชเธ เธฒเธเน€เธเธฃเธทเนเธญเธเธเธฑเธเธฃ",
+    source: "Workshop เธซเธเนเธฒ 10"
+  }
+];
+
+const cases = [
+  {
+    title: "PO test เนเธฅเนเธง Trip เนเธ scope",
+    summary: "GT-11 เธเธเธฒเธเน€เธเธฃเธทเนเธญเธเธ—เธ”เธชเธญเธเธฃเธฐเธซเธงเนเธฒเธ PO เนเธฅเนเธง Trip เธเธฒเธเธญเธธเธเธเธฃเธ“เนเธ—เธตเนเธญเธขเธนเนเนเธ scope เธเธฒเธเธเนเธญเธก เธเธถเธเธขเธฑเธเธฃเธฒเธขเธเธฒเธเน€เธเนเธ PO เนเธ”เน",
+    days: ["PO", "PO", "PD", "PO", "PO", "PO", "PD", "PO", "PO", "PO", "-", "-", "-", "-", "-"],
+    remarks: [
+      "Trip เธฃเธฐเธซเธงเนเธฒเธ Startup Test เธซเธฃเธทเธญ Shutdown เน€เธเธทเนเธญเนเธเนเธเนเธญเธเธดเธ”เธเธฅเธฒเธ”เธเธฒเธเธเธฒเธเธเนเธญเธก เธฃเธฒเธขเธเธฒเธเน€เธเนเธ PO เนเธ”เนเน€เธกเธทเนเธญเธญเธขเธนเนเนเธ scope เธเธฒเธ PO",
+      "POH เธเธฑเธเธ•เธฒเธกเธเธฑเนเธงเนเธกเธเธเธฅเธ”/เธเธเธฒเธเธเธฃเธดเธ",
+      "ST-10 เธ—เธตเนเธญเธขเธนเนเธชเธ–เธฒเธเธฐ RS เธชเธฒเธกเธฒเธฃเธ–เธฃเธฒเธขเธเธฒเธ Derating เธเนเธญเธเธ—เธฑเธเธเธฒเธ GT-11 Outage เนเธ”เน"
+    ],
+    totals: [
+      ["GT-11", "6", "0", "9", "0", "4"],
+      ["GT-12", "0", "15", "0", "0", "0"],
+      ["ST-10", "0", "15", "0", "0", "13"]
+    ],
+    source: "เธซเธเนเธฒ 49"
+  },
+  {
+    title: "เน€เธฅเธทเนเธญเธ PO เธกเธฒเธ—เธฑเธ UO",
+    summary: "GT-11 Trip เธเนเธญเธ เนเธฅเนเธงเน€เธฅเธทเนเธญเธเธเธฒเธ PO เธกเธฒเธ—เธณเธฃเธฐเธซเธงเนเธฒเธ UO เธชเนเธงเธเธ—เธตเนเธ—เธฑเธ U1 เธ•เนเธญเธเธฃเธฒเธขเธเธฒเธ PO เน€เธเนเธ Code C เธเนเธญเธ",
+    days: ["U1", "U1", "U1", "U1", "U1", "U1", "U1", "U1", "U1", "U1", "PO", "PD", "PO", "RS", "RS"],
+    remarks: [
+      "Outage เธเนเธญเธเธ—เธฑเธเธเธฑเธเนเธกเนเนเธ”เน เน€เธซเธ•เธธเธเธฒเธฃเธ“เนเธ—เธตเนเธชเธญเธเธเธฐเน€เธเนเธ Code A เนเธ”เนเน€เธกเธทเนเธญ Outage เนเธฃเธเธชเธดเนเธเธชเธธเธ”",
+      "PO เธ—เธตเนเธ—เธฑเธเธเนเธงเธ U1 เนเธซเนเธฃเธฒเธขเธเธฒเธเน€เธเนเธ Code C เธเธถเธเนเธกเนเธเธฃเธฐเธ—เธ Performance Index",
+      "Outage เธชเธดเนเธเธชเธธเธ”เน€เธกเธทเนเธญเธเธเธฒเธเน€เธเธฃเธทเนเธญเธเธเธฅเธฑเธเนเธ”เน เธซเธฃเธทเธญเนเธเนเนเธเนเธฅเนเธงเน€เธชเธฃเนเธเนเธ”เธขเนเธกเนเธกเธตเนเธเธ Startup เธ•เนเธญ"
+    ],
+    totals: [
+      ["GT-11", "1", "2", "2", "10", "1"],
+      ["GT-12", "15", "0", "0", "0", "0"],
+      ["ST-10", "15", "0", "0", "0", "13"]
+    ],
+    source: "เธซเธเนเธฒ 50"
+  },
+  {
+    title: "Startup Failure",
+    summary: "GT-11 เธกเธตเนเธเธ Startup เน€เธเธทเนเธญเธเนเธฒเธขเนเธ เนเธ•เนเนเธกเนเธชเธฒเธกเธฒเธฃเธ–เธเนเธฒเธข Load เนเธ”เนเธ—เธฑเธเธ•เธฒเธกเธเธณเธซเธเธ”เธเธฒเธฃ",
+    days: ["RS", "RS", "RS", "SF", "SF", "SF", "SF", "-", "-", "-", "-", "-", "-", "-", "-"],
+    remarks: [
+      "SF เธชเธดเนเธเธชเธธเธ”เน€เธกเธทเนเธญเธเธเธฒเธเน€เธเธฃเธทเนเธญเธเธเธฅเธฑเธเน€เธเนเธฒเธฃเธฐเธเธ เธซเธฃเธทเธญเนเธเนเนเธเธเธฑเธเธซเธฒเนเธฅเนเธงเน€เธชเธฃเนเธเนเธ”เธขเนเธกเนเธกเธตเนเธเธ Startup เธ•เนเธญ",
+      "เธ–เนเธฒเธเธเธฒเธเน€เธเธฃเธทเนเธญเธเธชเธณเน€เธฃเนเธเนเธฅเนเธงเนเธ•เนเธเธถเนเธ Load เธ•เธฒเธกเธเธณเธชเธฑเนเธเนเธกเนเนเธ”เน เนเธซเนเธเธดเธเธฒเธฃเธ“เธฒเน€เธเนเธ U1"
+    ],
+    totals: [
+      ["GT-11", "8", "3", "0", "4", "0"],
+      ["GT-12", "15", "0", "0", "0", "0"],
+      ["ST-10", "15", "0", "0", "0", "4"]
+    ],
+    source: "เธซเธเนเธฒ 51"
+  },
+  {
+    title: "Derating เนเธฅเนเธงเน€เธเธดเธ” Outage",
+    summary: "เธฅเธ”เธเธณเธฅเธฑเธเธเธฅเธดเธ•เธเธฒเธเธญเธธเธเธเธฃเธ“เน A/B เนเธฅเนเธงเธกเธต Outage เธ เธฒเธขเธซเธฅเธฑเธ เน€เธซเธ•เธธเธเธฒเธฃเธ“เน Derating เธเธฐเธชเธดเนเธเธชเธธเธ”เธ—เธฑเธเธ—เธตเน€เธกเธทเนเธญ Outage เน€เธฃเธดเนเธก",
+    days: ["D1", "D1", "D1", "D1", "D1", "D1", "U3", "U3", "U3", "U3", "U3", "U3", "-", "-", "-"],
+    remarks: [
+      "Derating เธฃเธฒเธขเธเธฒเธเนเธขเธเธ•เธฒเธกเน€เธซเธ•เธธเธเธฒเธฃเธ“เน เธซเธฃเธทเธญเธฃเธฒเธขเธเธฒเธเน€เธเนเธเธเนเธฒเน€เธเธฅเธตเนเธขเธฃเธงเธกเธ•เธฅเธญเธ”เธเนเธงเธเนเธ”เน",
+      "เน€เธกเธทเนเธญ Derating เนเธฅเนเธงเน€เธเธดเธ” Outage เธ เธฒเธขเธซเธฅเธฑเธ เนเธซเนเธ–เธทเธญเธงเนเธฒ Derating เธชเธดเนเธเธชเธธเธ”เน€เธกเธทเนเธญ Outage เน€เธฃเธดเนเธก"
+    ],
+    totals: [
+      ["GT-11", "9", "0", "0", "6", "6"],
+      ["GT-12", "15", "0", "0", "0", "0"],
+      ["ST-10", "15", "0", "0", "0", "12"]
+    ],
+    source: "เธซเธเนเธฒ 52"
+  }
+];
+
+const navButtons = document.querySelectorAll(".nav-button");
+const views = document.querySelectorAll(".view");
+
+navButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    navButtons.forEach((item) => item.classList.remove("is-active"));
+    views.forEach((view) => view.classList.remove("is-visible"));
+    button.classList.add("is-active");
+    document.getElementById(button.dataset.view).classList.add("is-visible");
+  });
+});
+
+function renderEvents(query = "") {
+  const grid = document.getElementById("eventGrid");
+  const needle = query.trim().toLowerCase();
+  const filtered = events.filter((item) =>
+    [item.code, item.label, item.title, item.desc].join(" ").toLowerCase().includes(needle)
+  );
+  grid.innerHTML = filtered
+    .map(
+      (item) => `
+        <article class="event-card">
+          <div class="code-title">
+            <strong>${item.code}</strong>
+            <span class="badge ${item.group}">${item.label}</span>
+          </div>
+          <h3>${item.title}</h3>
+          <p>${item.desc}</p>
+          <div class="source">${item.source}</div>
+        </article>
+      `
+    )
+    .join("");
+  enhanceGlossaryTerms(grid);
+}
+
+function renderGlossary(query = "") {
+  const grid = document.getElementById("glossaryGrid");
+  const needle = query.trim().toLowerCase();
+  const filtered = glossary.filter((item) => item.join(" ").toLowerCase().includes(needle));
+  grid.innerHTML = filtered
+    .map(
+      ([term, full, desc]) => `
+        <article class="glossary-card">
+          <div class="code-title">
+            <strong>${term}</strong>
+          </div>
+          <h3>${full}</h3>
+          <p>${desc}</p>
+        </article>
+      `
+    )
+    .join("");
+  enhanceGlossaryTerms(grid);
+}
+
+function renderAfoeeCompare() {
+  const container = document.getElementById("afoeeCompare");
+  container.innerHTML = afoeeCompare
+    .map(
+      (item) => `
+        <article class="compare-card">
+          <strong>${item.title}</strong>
+          <p>${item.desc}</p>
+          <code>${item.formula}</code>
+          <div class="source">${item.note}</div>
+        </article>
+      `
+    )
+    .join("");
+  enhanceGlossaryTerms(container);
+}
+
+function renderAfoeeRules() {
+  const container = document.getElementById("afoeeRules");
+  container.innerHTML = afoeeRules
+    .map(
+      (item) => `
+        <article class="rule-card">
+          <h3>${item.title}</h3>
+          <p>${item.desc}</p>
+          <div class="source">${item.source}</div>
+        </article>
+      `
+    )
+    .join("");
+  enhanceGlossaryTerms(container);
+}
+
+function renderAfoeeActions(query = "") {
+  const needle = query.trim().toLowerCase();
+  const filtered = afoeeActions.filter((item) =>
+    [item.title, item.tag, item.desc, item.detail].join(" ").toLowerCase().includes(needle)
+  );
+  const container = document.getElementById("afoeeActions");
+  container.innerHTML = filtered
+    .map(
+      (item) => `
+        <article class="event-card">
+          <div class="code-title">
+            <strong>${item.tag}</strong>
+            <span class="badge ${item.group}">${item.source}</span>
+          </div>
+          <h3>${item.title}</h3>
+          <p>${item.desc}</p>
+          <p>${item.detail}</p>
+        </article>
+      `
+    )
+    .join("");
+  enhanceGlossaryTerms(container);
+}
+
+function renderAfoeeCalculator() {
+  const fields = [
+    ["PH", 720],
+    ["POHOEE", 120],
+    ["PEHOEE", 12],
+    ["UOH", 24],
+    ["EUNDH", 8]
+  ];
+  const form = document.getElementById("afoeeCalc");
+  form.innerHTML = fields
+    .map(
+      ([label, value]) => `
+        <label>${label}
+          <input class="number-input" name="${label}" type="number" step="0.000001" value="${value}" />
+        </label>
+      `
+    )
+    .join("");
+
+  const update = () => {
+    const values = Object.fromEntries(new FormData(form));
+    const ph = n(values.PH);
+    const pohoee = n(values.POHOEE);
+    const pehoee = n(values.PEHOEE);
+    const uoh = n(values.UOH);
+    const eundh = n(values.EUNDH);
+    const ah = ph - pohoee - pehoee - uoh;
+    const denominator = ph - pohoee;
+    const af = (ah / ph) * 100;
+    const gweaf = ((ah - eundh) / ph) * 100;
+    const afoee = (ah / denominator) * 100;
+    const peImpact = (pehoee / denominator) * 100;
+    const uohImpact = (uoh / denominator) * 100;
+
+    document.getElementById("afoeeResults").innerHTML = [
+      ["AH", ah.toFixed(2)],
+      ["AF", percent(af)],
+      ["GWEAF", percent(gweaf)],
+      ["AFoEE", percent(afoee)],
+      ["PE impact", percent(peImpact)],
+      ["UOH impact", percent(uohImpact)]
+    ]
+      .map(([label, value]) => `<div class="result-box"><span>${label}</span><strong>${value}</strong></div>`)
+      .join("");
+    enhanceGlossaryTerms(document.getElementById("afoeeResults"));
+  };
+
+  form.addEventListener("input", update);
+  update();
+  enhanceGlossaryTerms(form.closest(".calculator-panel"));
+}
+
+function wizardDecision() {
+  const form = document.getElementById("eventWizard");
+  const data = Object.fromEntries(new FormData(form));
+  let code = "เธ•เธฃเธงเธเน€เธเธทเนเธญเธเนเธเน€เธเธดเนเธก";
+  let title = "เธขเธฑเธเนเธกเนเธชเธฒเธกเธฒเธฃเธ–เธเธฑเธเธเธเธเธฒเธเธเนเธญเธกเธนเธฅเธ—เธตเนเนเธซเน";
+  const reasons = [];
+
+  if (data.kind === "secondary") {
+    code = "Card Code C";
+    title = "เน€เธซเธ•เธธเธเธฒเธฃเธ“เนเธฃเธญเธ เนเธกเนเธเธณเธเธงเธ“ Performance Index";
+    reasons.push("เนเธเนเธเธฑเธเธเธฒเธเน€เธเธดเนเธกเน€เธ•เธดเธกเธฃเธฐเธซเธงเนเธฒเธเน€เธซเธ•เธธเธเธฒเธฃเธ“เนเธซเธฅเธฑเธ เนเธฅเธฐเธ•เนเธญเธเนเธกเนเธเธฃเธฐเธ—เธ Generation Mode");
+  } else if (data.kind === "reserved") {
+    code = "RS";
+    title = "Reserved Shutdown";
+    reasons.push("เนเธฃเธเนเธเธเนเธฒเธเธฃเนเธญเธกเน€เธ”เธดเธเน€เธเธฃเธทเนเธญเธ เนเธ•เนเธจเธนเธเธขเนเธเธงเธเธเธธเธกเนเธกเนเนเธ”เนเธชเธฑเนเธเน€เธ”เธดเธเน€เธเธฃเธทเนเธญเธ");
+  } else if (data.startup === "testInScope") {
+    code = "PO";
+    title = "Trip/Shutdown เธฃเธฐเธซเธงเนเธฒเธ Startup Test เนเธ scope เธเธฒเธ PO";
+    reasons.push("เธชเนเธฅเธ”เน case study เธฃเธฐเธเธธเธงเนเธฒเธฃเธฒเธขเธเธฒเธเน€เธเนเธ PO เนเธ”เนเน€เธกเธทเนเธญเน€เธเนเธเธเธฅเธเธฒเธเธญเธธเธเธเธฃเธ“เนเนเธ scope เธเธฒเธ Planned Outage");
+  } else if (data.startup === "failBeforeSync") {
+    code = "SF";
+    title = "Startup Failure";
+    reasons.push("เน€เธเธดเธ”เธฃเธฐเธซเธงเนเธฒเธ Startup เนเธฅเธฐเธเธเธฒเธเน€เธเธฃเธทเนเธญเธเนเธกเนเธชเธณเน€เธฃเนเธ");
+  } else if (data.startup === "failAfterSync") {
+    code = "U1";
+    title = "เธเธเธฒเธเนเธฅเนเธงเนเธ•เนเธเธถเนเธ Load เนเธกเนเนเธ”เน";
+    reasons.push("เธเธดเธขเธฒเธก SF เธฃเธฐเธเธธเธงเนเธฒเธซเธฒเธเธเธเธฒเธเน€เธเธฃเธทเนเธญเธเนเธฅเนเธงเนเธฅเธฐเนเธกเนเธชเธฒเธกเธฒเธฃเธ–เธเธถเนเธ Load เธ•เธฒเธกเธชเธฑเนเธ เนเธซเนเธ–เธทเธญเน€เธเนเธ U1");
+  } else if (data.kind === "derating") {
+    if (data.deratingRule === "no") {
+      code = "เนเธกเนเน€เธเนเธ Derating";
+      title = "เธขเธฑเธเนเธกเนเน€เธเนเธฒเน€เธเธ“เธ‘เนเธฃเธฒเธขเธเธฒเธ Derating";
+      reasons.push("เธ•เนเธญเธเธฅเธ” Load เธกเธฒเธเธเธงเนเธฒ 2% เธเธญเธ GMC เธซเธฃเธทเธญเน€เธซเธ•เธธเธเธฒเธฃเธ“เนเธขเธฒเธงเน€เธเธดเธ 30 เธเธฒเธ—เธต");
+    } else if (data.deratingRule === "ambient") {
+      code = "Seasonal Derating / GDC";
+      title = "Ambient Loss";
+      reasons.push("เน€เธเธดเธ”เธเธฒเธเธชเธ เธฒเธเนเธงเธ”เธฅเนเธญเธกเธ•เธฒเธกเธคเธ”เธนเธเธฒเธฅ เนเธซเนเธฃเธฒเธขเธเธฒเธเนเธเธเธเนเธฒเน€เธเธฅเธตเนเธขเนเธฅเธฐเนเธเน GDC");
+    } else {
+      const map = { planned: "PD", lt6: "D1/D2", lt7: "D3", after7: "D4", gt7: "D4", none: "D1" };
+      code = map[data.planning] || "D1";
+      title = "Derating เธ•เธฒเธกเธฃเธฐเธ”เธฑเธเธเธงเธฒเธกเน€เธฃเนเธเธ”เนเธงเธ";
+      reasons.push("เน€เธฅเธทเธญเธ D1-D4 เธ•เธฒเธกเน€เธงเธฅเธฒเธ—เธตเนเธ•เนเธญเธเธฅเธ”เธเธณเธฅเธฑเธเธเธฅเธดเธ• เนเธฅเธฐ PD เน€เธกเธทเนเธญเธงเธฒเธเนเธเธเธเธฑเธ”เน€เธเธเธฅเนเธงเธเธซเธเนเธฒ");
+    }
+  } else if (data.kind === "outage") {
+    const map = { planned: "PO", gt7: "MO", lt6: "U1/U2", lt7: "U3", after7: "MO", none: "U1" };
+    code = map[data.planning] || "U1";
+    title = "Outage เธ•เธฒเธกเนเธเธเนเธฅเธฐเธเธงเธฒเธกเน€เธฃเนเธเธ”เนเธงเธ";
+    reasons.push("PO เธเธทเธญเนเธเธเธเธฑเธ”เน€เธเธ, MO เธเธทเธญเธงเธฒเธเนเธเธเธซเธขเธธเธ”เนเธ”เนเน€เธเธดเธ 7 เธงเธฑเธ, U1-U3 เธเธทเธญ Forced Outage เธ•เธฒเธกเน€เธงเธฅเธฒเธ—เธตเนเธ•เนเธญเธเธเธณเน€เธเธฃเธทเนเธญเธเธญเธญเธ");
+  }
+
+  document.getElementById("wizardResult").innerHTML = `
+    <p class="eyebrow">เธเธณเนเธเธฐเธเธณ</p>
+    <div class="decision-code">${code}</div>
+    <h3>${title}</h3>
+    <ul>${reasons.map((reason) => `<li>${reason}</li>`).join("")}</ul>
+    <p class="note">เนเธเนเน€เธเนเธเธ•เธฑเธงเธเนเธงเธขเธเธดเธ”เน€เธเธทเนเธญเธเธ•เนเธเน€เธ—เนเธฒเธเธฑเนเธ เธเธฃเธ“เธตเธกเธต outage เธเนเธญเธเธเธฑเธเธซเธฃเธทเธญ scope เธเธฒเธเธเนเธญเธกเนเธกเนเธเธฑเธ” เธเธงเธฃเธขเธถเธ” timeline เนเธฅเธฐเน€เธญเธเธชเธฒเธฃเธเธฒเธเธเธฃเธดเธเธเธฃเธฐเธเธญเธ</p>
+  `;
+  enhanceGlossaryTerms(document.getElementById("wizardResult"));
+}
+
+function n(value) {
+  return Number.parseFloat(value) || 0;
+}
+
+function percent(value) {
+  return `${value.toFixed(2)}%`;
+}
+
+const calculators = {
+  time: {
+    labels: [
+      ["PH", 720],
+      ["SH", 500],
+      ["RH", 100],
+      ["POH", 80],
+      ["UOH", 40],
+      ["EUNDH", 10],
+      ["ESEDH", 5]
+    ],
+    render(values) {
+      const ph = n(values.PH);
+      return [
+        ["SF", percent((n(values.SH) / ph) * 100)],
+        ["RSF", percent((n(values.RH) / ph) * 100)],
+        ["POF", percent((n(values.POH) / ph) * 100)],
+        ["UOF", percent((n(values.UOH) / ph) * 100)],
+        ["UDF", percent((n(values.EUNDH) / ph) * 100)],
+        ["SEDF", percent((n(values.ESEDH) / ph) * 100)]
+      ];
+    },
+    note: "Time Factor เน€เธ—เธตเธขเธเธเธฑเนเธงเนเธกเธเน€เธซเธ•เธธเธเธฒเธฃเธ“เนเธเธฑเธ PH เน€เธเนเธ SF = SH / PH x 100"
+  },
+  gweaf: {
+    labels: [
+      ["PH", 696],
+      ["AH", 491],
+      ["POH", 205],
+      ["UOH", 0],
+      ["EUNDH", 18.64],
+      ["ESEDH", 0.95]
+    ],
+    render(values) {
+      const ph = n(values.PH);
+      const pof = (n(values.POH) / ph) * 100;
+      const uof = (n(values.UOH) / ph) * 100;
+      const udf = (n(values.EUNDH) / ph) * 100;
+      const sedf = (n(values.ESEDH) / ph) * 100;
+      return [
+        ["GWEAF", percent(((n(values.AH) - n(values.EUNDH)) / ph) * 100)],
+        ["EAF", percent(100 - pof - uof - udf - sedf)],
+        ["AF", percent(100 - pof - uof)],
+        ["UDF", percent(udf)]
+      ];
+    },
+    note: "GWEAF เนเธกเนเธซเธฑเธ Seasonal Derating เธชเนเธงเธ EAF เธซเธฑเธ SEDF เน€เธเธดเนเธกเธ”เนเธงเธข"
+  },
+  nof: {
+    labels: [
+      ["NAG (MkWh)", 228.39],
+      ["SH", 439.88],
+      ["CC", 580]
+    ],
+    render(values) {
+      const nof = ((n(values["NAG (MkWh)"]) * 1000) / (n(values.SH) * n(values.CC))) * 100;
+      return [
+        ["NOF", percent(nof)],
+        ["NAG (MWh)", (n(values["NAG (MkWh)"]) * 1000).toFixed(2)],
+        ["Denominator", (n(values.SH) * n(values.CC)).toFixed(2)]
+      ];
+    },
+    note: "NOF เนเธเน NAG เน€เธเนเธ MWh เธเธถเธเธ•เนเธญเธเธเธนเธ“ 1,000 เน€เธกเธทเนเธญเธเธฃเธญเธเน€เธเนเธ MkWh"
+  },
+  station: {
+    labels: [
+      ["Unit GAG", 150],
+      ["Plant GAG", 1300],
+      ["Unit GMC", 100],
+      ["Plant GMC", 700],
+      ["Station Service", 200]
+    ],
+    render(values) {
+      const byGag = (n(values["Unit GAG"]) / n(values["Plant GAG"])) * n(values["Station Service"]);
+      const byGmc = (n(values["Unit GMC"]) / n(values["Plant GMC"])) * n(values["Station Service"]);
+      return [
+        ["SS by GAG", byGag.toFixed(6)],
+        ["NAG by GAG", (n(values["Unit GAG"]) - byGag).toFixed(6)],
+        ["SS by GMC", byGmc.toFixed(6)],
+        ["NAG if no run", (0 - byGmc).toFixed(6)]
+      ];
+    },
+    note: "เธ–เนเธฒเนเธฃเธเนเธเธเนเธฒเธกเธตเธเธฒเธฃเน€เธ”เธดเธเน€เธเธฃเธทเนเธญเธ เนเธเนเธ Station Service เธ•เธฒเธก GAG; เธ–เนเธฒเนเธกเนเธกเธตเธ—เธธเธ Unit เนเธเนเธเธ•เธฒเธก GMC"
+  }
+};
+
+function renderCalculator(type = "time") {
+  const config = calculators[type];
+  const panel = document.getElementById("calculatorPanel");
+  const inputs = config.labels
+    .map(([label, value]) => `
+      <label>${label}
+        <input class="number-input" name="${label}" type="number" step="0.000001" value="${value}" />
+      </label>
+    `)
+    .join("");
+  panel.innerHTML = `
+    <form class="calc-grid" id="calcForm">${inputs}</form>
+    <div class="result-grid" id="calcResults"></div>
+    <p class="note">${config.note}</p>
+  `;
+
+  const form = document.getElementById("calcForm");
+  const update = () => {
+    const values = Object.fromEntries(new FormData(form));
+    document.getElementById("calcResults").innerHTML = config
+      .render(values)
+      .map(([label, value]) => `<div class="result-box"><span>${label}</span><strong>${value}</strong></div>`)
+      .join("");
+    enhanceGlossaryTerms(document.getElementById("calcResults"));
+  };
+  form.addEventListener("input", update);
+  update();
+  enhanceGlossaryTerms(panel);
+}
+
+function renderCases(active = 0) {
+  const list = document.getElementById("caseList");
+  list.innerHTML = cases
+    .map(
+      (item, index) => `
+        <button class="case-button ${index === active ? "is-active" : ""}" data-case="${index}">
+          ${item.title}
+        </button>
+      `
+    )
+    .join("");
+  list.querySelectorAll(".case-button").forEach((button) => {
+    button.addEventListener("click", () => renderCases(Number(button.dataset.case)));
+  });
+
+  const item = cases[active];
+  const detail = document.getElementById("caseDetail");
+  detail.innerHTML = `
+    <p class="eyebrow">${item.source}</p>
+    <h3>${item.title}</h3>
+    <p>${item.summary}</p>
+    <div class="timeline">
+      ${item.days
+        .map((day, index) => `<div class="day ${day.toLowerCase()}"><strong>D${index + 1}</strong><span>${day}</span></div>`)
+        .join("")}
+    </div>
+    <h3>เธเนเธญเธชเธฑเธเน€เธเธ•</h3>
+    <ul class="check-list">${item.remarks.map((remark) => `<li>${remark}</li>`).join("")}</ul>
+    <table class="totals">
+      <thead><tr><th>Unit</th><th>SH</th><th>RH</th><th>POH</th><th>UOH</th><th>Derating</th></tr></thead>
+      <tbody>${item.totals.map((row) => `<tr>${row.map((cell) => `<td>${cell}</td>`).join("")}</tr>`).join("")}</tbody>
+    </table>
+  `;
+  enhanceGlossaryTerms(detail);
+}
+
+document.getElementById("eventSearch").addEventListener("input", (event) => renderEvents(event.target.value));
+document.getElementById("glossarySearch").addEventListener("input", (event) => renderGlossary(event.target.value));
+document.getElementById("afoeeSearch").addEventListener("input", (event) => renderAfoeeActions(event.target.value));
+document.getElementById("eventWizard").addEventListener("input", wizardDecision);
+
+document.querySelectorAll(".tab-button").forEach((button) => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".tab-button").forEach((item) => item.classList.remove("is-active"));
+    button.classList.add("is-active");
+    renderCalculator(button.dataset.calc);
+  });
+});
+
+renderEvents();
+renderGlossary();
+renderAfoeeCompare();
+renderAfoeeRules();
+renderAfoeeActions();
+renderAfoeeCalculator();
+wizardDecision();
+renderCalculator();
+renderCases();
+enhanceGlossaryTerms(document.querySelector(".workspace"));
+
+</script>
+  </body>
+</html>
+
